@@ -119,10 +119,10 @@ class _LoginPageState extends State<LoginPage> {
                       alignment: Alignment.centerRight,
                       child: GestureDetector(
                         onTap: () {
-                          Navigator.pushNamed(context, '/forgot-password');
+                          Navigator.pushNamed(context, '/forget-password');
                         },
                         child: const Text(
-                          'Forgot Password?',
+                          'Forget Password?',
                           style: TextStyle(
                               color: Colors.blueGrey,
                               fontWeight: FontWeight.bold,
@@ -261,12 +261,12 @@ class _LoginPageState extends State<LoginPage> {
                 const Text("Don't have an account? "),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, '/sign-up');
+                    Navigator.pushNamed(context, '/registration');
                   },
                   child: const Text(
                     'Sign Up',
                     style: TextStyle(
-                        color: Colors.blueGrey, fontWeight: FontWeight.bold),
+                        color: Colors.blue, fontWeight: FontWeight.bold),
                   ),
                 ),
               ],
