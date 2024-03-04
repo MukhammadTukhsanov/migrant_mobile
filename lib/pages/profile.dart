@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -206,23 +207,27 @@ class _ProfilePageState extends State<ProfilePage> {
                       ],
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
-                    child: const Padding(
-                      padding: EdgeInsets.all(16.0),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
                       child: Column(
                         children: [
                           // user phone nummber
                           ListTile(
-                            leading: Icon(
+                            onTap: () {
+                              // ignore: deprecated_member_use
+                              launch("tel://+49123456789");
+                            },
+                            leading: const Icon(
                               Icons.phone,
                               color: Colors.blueGrey,
                             ),
-                            title: Text(
+                            title: const Text(
                               'Phone number',
                               style: TextStyle(
                                 color: Colors.blueGrey,
                               ),
                             ),
-                            subtitle: Text(
+                            subtitle: const Text(
                               '+49 123 456 789',
                               style: TextStyle(
                                 color: Colors.blueGrey,
@@ -231,17 +236,21 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                           // user email
                           ListTile(
-                            leading: Icon(
+                            onTap: () {
+                              // ignore: deprecated_member_use
+                              launch("mailto: theresa89@domain.ltd");
+                            },
+                            leading: const Icon(
                               Icons.email,
                               color: Colors.blueGrey,
                             ),
-                            title: Text(
+                            title: const Text(
                               'Email',
                               style: TextStyle(
                                 color: Colors.blueGrey,
                               ),
                             ),
-                            subtitle: Text("theresa89@domain.ltd",
+                            subtitle: const Text("theresa89@domain.ltd",
                                 style: TextStyle(
                                   color: Colors.blueGrey,
                                 )),

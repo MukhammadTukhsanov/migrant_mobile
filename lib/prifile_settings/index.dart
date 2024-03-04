@@ -9,38 +9,43 @@ class ProfileSettings extends StatefulWidget {
 }
 
 class _ProfileSettingsState extends State<ProfileSettings> {
-  List<ProfileSettingsListItem> settings = [
-    ProfileSettingsListItem(
-      listTitle: 'Change email address',
-      onTap: null,
-    ),
-    ProfileSettingsListItem(
-      listTitle: 'Change password',
-      onTap: null,
-    ),
-    ProfileSettingsListItem(
-      listTitle: 'Terms and conditions',
-      onTap: null,
-    ),
-    ProfileSettingsListItem(
-      listTitle: 'License',
-      onTap: null,
-    ),
-    ProfileSettingsListItem(
-      listTitle: 'Help',
-      onTap: null,
-    ),
-    ProfileSettingsListItem(
-      listTitle: 'Logout',
-      onTap: null,
-    ),
-    ProfileSettingsListItem(
-      listTitle: 'Delete account',
-      onTap: null,
-    ),
-  ];
   @override
   Widget build(BuildContext context) {
+    List<ProfileSettingsListItem> settings = [
+      // ProfileSettingsListItem(
+      //   listTitle: 'Change email address',
+      //   onTap: null,
+      // ),
+      ProfileSettingsListItem(
+        listTitle: 'Change password',
+        onTap: () {
+          Navigator.pushNamed(context, '/change-password');
+        },
+      ),
+      ProfileSettingsListItem(
+          listTitle: 'Terms and conditions',
+          onTap: () {
+            Navigator.pushNamed(context, '/terms-and-conditions');
+          }),
+      ProfileSettingsListItem(
+        listTitle: 'License',
+        onTap: null,
+      ),
+      ProfileSettingsListItem(
+        listTitle: 'Help',
+        onTap: null,
+      ),
+      ProfileSettingsListItem(
+        listTitle: 'Logout',
+        onTap: () {
+          Navigator.pushNamed(context, '/login');
+        },
+      ),
+      ProfileSettingsListItem(
+        listTitle: 'Delete account',
+        onTap: null,
+      ),
+    ];
     // user profile settings page
     return Scaffold(
       backgroundColor: Colors.white,
