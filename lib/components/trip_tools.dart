@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:migrant/components/search_top_modal.dart';
-import 'package:top_modal_sheet/top_modal_sheet.dart';
 
 // ignore: must_be_immutable
 class TripTools extends StatelessWidget {
@@ -40,9 +38,9 @@ class TripTools extends StatelessWidget {
             GestureDetector(
               // onTap: () => Navigator.pushNamed(context, "/search-top-modal"),
               onTap: () {
-                showTopModalSheet(context, SearchTopModal(onConfirm: () {
-                  Navigator.pushNamed(context, "/home-page");
-                }));
+                // showTopModalSheet(context, SearchTopModal(onConfirm: () {
+                //   Navigator.pushNamed(context, "/home-page");
+                // }));
               },
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

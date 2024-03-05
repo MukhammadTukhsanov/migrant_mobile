@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:migrant/auth/forgot_password/index.dart';
 import 'package:migrant/auth/registration/index.dart';
+import 'package:migrant/navbar/index.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -152,6 +153,11 @@ class _LoginPageState extends State<LoginPage> {
                         )),
                       ),
                       onPressed: () {
+                        Navigator.push(
+                            context,
+                            CupertinoPageRoute(
+                              builder: (context) => const Navigation(),
+                            ));
                         // Navigator.pushNamed(context, '/navigation');
                       },
                       child: const Text('Login',

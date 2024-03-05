@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:migrant/chat/index.dart';
+import 'package:migrant/pages/home_page/index.dart';
 import 'package:migrant/pages/profile.dart';
-import 'package:migrant/pages/search_main.dart';
 
 // ignore: non_constant_identifier_names
 final BottomNavigationList = [
-  const SearchMain(),
+  const HomePage(),
   const ChatsPage(),
   const ProfilePage(),
 ];

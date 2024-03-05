@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:migrant/components/trip_card.dart';
 import 'package:migrant/components/trip_tools.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomePageI extends StatelessWidget {
+  const HomePageI({super.key});
 
   // passengrs number
   final int passengers = 5;

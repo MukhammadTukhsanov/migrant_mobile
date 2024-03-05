@@ -2,16 +2,13 @@ import 'package:csc_picker/csc_picker.dart';
 import 'package:flutter/material.dart';
 
 class ChooseCountry extends StatefulWidget {
-  const ChooseCountry({super.key, required startCountry, required endCountry});
+  const ChooseCountry({super.key});
 
   @override
   State<ChooseCountry> createState() => _ChooseCountryState();
 }
 
 class _ChooseCountryState extends State<ChooseCountry> {
-  bool startCountry = false;
-  bool endCountry = false;
-
   String countryValue = "";
   String stateValue = "";
   String cityValue = "";
@@ -29,6 +26,7 @@ class _ChooseCountryState extends State<ChooseCountry> {
           child: Column(
             children: [
               CSCPicker(
+                layout: Layout.vertical,
                 showStates: true,
                 showCities: true,
                 flagState: CountryFlag.DISABLE,
@@ -39,20 +37,20 @@ class _ChooseCountryState extends State<ChooseCountry> {
                 ),
                 disabledDropdownDecoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(10)),
-                  color: Colors.grey.shade300,
-                  border: Border.all(color: Colors.grey),
+                  color: Colors.blueGrey.shade50,
+                  border: Border.all(color: Colors.blueGrey),
                 ),
-                selectedItemStyle: const TextStyle(
-                  color: Colors.black,
+                selectedItemStyle: TextStyle(
+                  color: Colors.blueGrey.shade700,
                   fontSize: 14,
                 ),
-                dropdownHeadingStyle: const TextStyle(
-                  color: Colors.black,
+                dropdownHeadingStyle: TextStyle(
+                  color: Colors.blueGrey.shade700,
                   fontSize: 17,
                   fontWeight: FontWeight.bold,
                 ),
-                dropdownItemStyle: const TextStyle(
-                  color: Colors.black,
+                dropdownItemStyle: TextStyle(
+                  color: Colors.blueGrey.shade700,
                   fontSize: 14,
                 ),
                 dropdownDialogRadius: 10.0,
@@ -80,18 +78,32 @@ class _ChooseCountryState extends State<ChooseCountry> {
                   }
                 },
               ),
+              const SizedBox(
+                height: 20,
+              ),
               // button on tap go to back with data
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  fixedSize: Size(MediaQuery.of(context).size.width - 32, 50),
+                  backgroundColor: Colors.blueGrey,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    side: const BorderSide(color: Colors.white, width: 1),
+                  ),
+                ),
                 onPressed: () {
                   Navigator.pop(context, [
                     countryValue,
                     stateValue,
                     cityValue,
-                    startCountry,
-                    endCountry
                   ]);
                 },
-                child: const Text('Submit'),
+                child: const Text('Submit',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: 1.2)),
               ),
             ],
           ),
