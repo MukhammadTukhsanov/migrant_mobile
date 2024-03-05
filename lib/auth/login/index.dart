@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:migrant/auth/forgot_password/index.dart';
+import 'package:migrant/auth/registration/index.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -119,7 +122,11 @@ class _LoginPageState extends State<LoginPage> {
                       alignment: Alignment.centerRight,
                       child: GestureDetector(
                         onTap: () {
-                          Navigator.pushNamed(context, '/forget-password');
+                          Navigator.push(
+                              context,
+                              CupertinoPageRoute(
+                                builder: (context) => const ForgetPassword(),
+                              ));
                         },
                         child: const Text(
                           'Forget Password?',
@@ -145,7 +152,7 @@ class _LoginPageState extends State<LoginPage> {
                         )),
                       ),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/home-page');
+                        // Navigator.pushNamed(context, '/navigation');
                       },
                       child: const Text('Login',
                           style: TextStyle(
@@ -261,7 +268,11 @@ class _LoginPageState extends State<LoginPage> {
                 const Text("Don't have an account? "),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, '/registration');
+                    Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (context) => const RegistrationPage(),
+                        ));
                   },
                   child: const Text(
                     'Sign Up',

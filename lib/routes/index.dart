@@ -9,6 +9,7 @@ import 'package:migrant/pages/home_page.dart';
 import 'package:migrant/pages/trip_info.dart';
 import 'package:migrant/prifile_settings/index.dart';
 import 'package:migrant/terms_and_conditions/index.dart';
+import 'package:migrant/welcom/index.dart';
 
 class MigrantApp extends StatelessWidget {
   const MigrantApp({super.key});
@@ -17,8 +18,9 @@ class MigrantApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        '/': (context) => const LoginPage(),
-        '/forget-password': (context) => const ForgotPassword(),
+        '/': (context) => const WelcomePage(),
+        '/login': (context) => const LoginPage(),
+        '/forget-password': (context) => const ForgetPassword(),
         '/registration': (context) => const RegistrationPage(),
         '/navigation': (context) => const Navigation(),
         '/trip-info': (context) => const TripInfo(),

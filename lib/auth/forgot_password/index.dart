@@ -1,13 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:migrant/auth/login/index.dart';
 
-class ForgotPassword extends StatefulWidget {
-  const ForgotPassword({super.key});
+class ForgetPassword extends StatefulWidget {
+  const ForgetPassword({super.key});
 
   @override
-  State<ForgotPassword> createState() => _ForgotPasswordState();
+  State<ForgetPassword> createState() => _ForgotPasswordState();
 }
 
-class _ForgotPasswordState extends State<ForgotPassword> {
+class _ForgotPasswordState extends State<ForgetPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,7 +103,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 const Text("You remember your password? "),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, '/');
+                    Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                            builder: (context) => const LoginPage()));
                   },
                   child: const Text(
                     'Sign In',

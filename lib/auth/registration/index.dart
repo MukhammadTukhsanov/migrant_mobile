@@ -1,7 +1,8 @@
 // ignore_for_file: unused_field
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:migrant/auth/login/index.dart';
 
 class RegistrationPage extends StatefulWidget {
   const RegistrationPage({super.key});
@@ -275,7 +276,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   const Text("Already have an account? "),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, '/');
+                      Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                              builder: (context) => const LoginPage()));
                     },
                     child: const Text(
                       'Sign In',
