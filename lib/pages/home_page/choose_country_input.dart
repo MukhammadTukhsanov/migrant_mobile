@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:migrant/pages/choose_country_page.dart';
 
@@ -25,6 +26,7 @@ class _ChooseCountryInputState extends State<ChooseCountryInput> {
             borderRadius: BorderRadius.circular(4)),
         child: Row(
           children: [
+            // icon location_on and text Choose Country
             const Icon(
               Icons.location_on,
               color: Colors.blueGrey,
