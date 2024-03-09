@@ -1,8 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:migrant/auth/forgot_password/index.dart';
 import 'package:migrant/auth/registration/index.dart';
-import 'package:migrant/navbar/index.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -12,12 +13,21 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   //controller for email input
-  final emailController = TextEditingController();
+  final _emailController = TextEditingController();
   //controller for password input
-  final passwordController = TextEditingController();
+  final _passwordController = TextEditingController();
   //password visibility
   bool _obscureText = true;
+
+  // dispose controllers
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     TextField(
                       keyboardType: TextInputType.emailAddress,
-                      controller: emailController,
+                      controller: _emailController,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(6),
@@ -82,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     TextField(
                       keyboardType: TextInputType.visiblePassword,
-                      controller: passwordController,
+                      controller: _passwordController,
                       obscureText: _obscureText,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -152,14 +162,7 @@ class _LoginPageState extends State<LoginPage> {
                           borderRadius: BorderRadius.circular(10),
                         )),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            CupertinoPageRoute(
-                              builder: (context) => const Navigation(),
-                            ));
-                        // Navigator.pushNamed(context, '/navigation');
-                      },
+                      onPressed: _signIn,
                       child: const Text('Login',
                           style: TextStyle(
                               color: Colors.white,
@@ -223,7 +226,7 @@ class _LoginPageState extends State<LoginPage> {
                                     width: 16,
                                   ),
                                   Text(
-                                    'Faceboossk',
+                                    'Facebook',
                                     style: TextStyle(color: Colors.blueGrey),
                                   ),
                                 ]),
@@ -233,30 +236,35 @@ class _LoginPageState extends State<LoginPage> {
                           width: 16,
                         ),
                         Expanded(
-                          child: Container(
-                            padding: const EdgeInsets.all(16),
-                            decoration: BoxDecoration(
-                              color: Colors.blueGrey.shade50,
-                              border:
-                                  Border.all(color: Colors.blueGrey.shade300),
-                              borderRadius: BorderRadius.circular(8),
+                          child: GestureDetector(
+                            onTap: () {
+                              _signInWithGoogle();
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.all(16),
+                              decoration: BoxDecoration(
+                                color: Colors.blueGrey.shade50,
+                                border:
+                                    Border.all(color: Colors.blueGrey.shade300),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: const Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image(
+                                      image: AssetImage(
+                                          'assets/images/google.png'),
+                                      width: 20,
+                                    ),
+                                    SizedBox(
+                                      width: 16,
+                                    ),
+                                    Text(
+                                      'Google',
+                                      style: TextStyle(color: Colors.blueGrey),
+                                    ),
+                                  ]),
                             ),
-                            child: const Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image(
-                                    image:
-                                        AssetImage('assets/images/google.png'),
-                                    width: 20,
-                                  ),
-                                  SizedBox(
-                                    width: 16,
-                                  ),
-                                  Text(
-                                    'Google',
-                                    style: TextStyle(color: Colors.blueGrey),
-                                  ),
-                                ]),
                           ),
                         ),
                       ],
@@ -292,5 +300,64 @@ class _LoginPageState extends State<LoginPage> {
         ],
       ),
     );
+  }
+
+  void _signIn() async {
+    // ignore: avoid_print
+    print("Clicked");
+    String email = _emailController.text;
+    String password = _passwordController.text;
+
+    User? user = (await _auth.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    ))
+        .user;
+
+    if (user != null) {
+      // user created
+      // navigate to home page
+      // ignore: avoid_print
+      print("User is successfully signed in!");
+      // ignore: use_build_context_synchronously
+      Navigator.pushNamed(context, '/navigation');
+    } else {
+      // user not created
+      // show error message
+      // ignore: duplicate_ignore
+      // ignore: use_build_context_synchronously
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Error creating user'),
+        ),
+      );
+    }
+  }
+
+  _signInWithGoogle() async {
+    final GoogleSignIn googleSignIn = GoogleSignIn();
+
+    try {
+      final GoogleSignInAccount? googleSignInAccount =
+          await googleSignIn.signIn();
+
+      if (googleSignInAccount != null) {
+        final GoogleSignInAuthentication googleSignInAuthentication =
+            await googleSignInAccount.authentication;
+
+        final AuthCredential credential = GoogleAuthProvider.credential(
+          accessToken: googleSignInAuthentication.accessToken,
+          idToken: googleSignInAuthentication.idToken,
+        );
+
+        await _auth.signInWithCredential(credential);
+
+        // ignore: use_build_context_synchronously
+        Navigator.pushNamed(context, '/navigation');
+      }
+    } catch (e) {
+      // ignore: avoid_print
+      print(e);
+    }
   }
 }

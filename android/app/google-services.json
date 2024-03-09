@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "311037823370",
+    "project_id": "m365-92149",
+    "storage_bucket": "m365-92149.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:311037823370:android:8500dc83d582abd306e073",
+        "android_client_info": {
+          "package_name": "com.example.migrant"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdTWvhfBSDSfCR0JPZErzPJYLsDOgjQU0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

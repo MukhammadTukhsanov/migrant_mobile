@@ -157,6 +157,7 @@ class _HomePageSliverState extends State<HomePageSliver> {
                   SliverChildListDelegate(List.generate(
                       5,
                       (index) => const Padding(
+                        // ignore: unnecessary_const
                         padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
                         child: TripCardSkelton(),
                       ),

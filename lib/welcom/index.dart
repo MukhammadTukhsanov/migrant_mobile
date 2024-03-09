@@ -83,7 +83,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Row(
                 children: [
                   Expanded(

@@ -7,7 +7,7 @@ import 'package:migrant/navbar/index.dart';
 import 'package:migrant/pages/choose_country_page.dart';
 import 'package:migrant/pages/home_page.dart';
 import 'package:migrant/pages/trip_info.dart';
-import 'package:migrant/prifile_settings/index.dart';
+import 'package:migrant/profile_page/profile_settings_page.dart';
 import 'package:migrant/terms_and_conditions/index.dart';
 import 'package:migrant/welcom/index.dart';
 

@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:migrant/auth/login/index.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -309,12 +312,19 @@ class _ProfilePageState extends State<ProfilePage> {
                               ),
                             ),
                           ),
-                          const ListTile(
-                            leading: Icon(
+                          ListTile(
+                            onTap: () {
+                              FirebaseAuth.instance.signOut();
+                              Navigator.push(
+                                  context,
+                                  CupertinoPageRoute(
+                                      builder: (context) => const LoginPage()));
+                            },
+                            leading: const Icon(
                               Icons.logout,
                               color: Colors.blueGrey,
                             ),
-                            title: Text(
+                            title: const Text(
                               'Logout',
                               style: TextStyle(
                                 color: Colors.blueGrey,
