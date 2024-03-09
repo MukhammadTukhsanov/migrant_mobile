@@ -193,6 +193,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
     // ignore: avoid_print
     print("Email: $email");
+    // ignore: avoid_print
     print("Password: $password");
     User? user = await _auth.signUpWithEmailAndPassword(email, password);
 
@@ -203,9 +204,12 @@ class _RegistrationPageState extends State<RegistrationPage> {
         _emailController.text.trim(),
         _passwordController.text.trim(),
       );
+      // ignore: avoid_print
       print("User is successfully created");
+      // ignore: use_build_context_synchronously
       Navigator.pushNamed(context, '/navigation');
     } else {
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Error creating user'),
@@ -224,7 +228,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
           'email': email,
           'password': password
         })
+        // ignore: avoid_print
         .then((value) => print("User Added"))
+        // ignore: avoid_print
         .catchError((error) => print("Failed to add user: $error"));
   }
 }

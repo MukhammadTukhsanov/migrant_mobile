@@ -53,7 +53,6 @@ class _RegistrationPageInputsState extends State<RegistrationPageInputs> {
       return null; // Return null if the input is valid
     }
 
-    ;
     checkValidateToPassword(String? value) {
       if (value!.isEmpty) {
         return 'Please enter a password';
@@ -66,7 +65,6 @@ class _RegistrationPageInputsState extends State<RegistrationPageInputs> {
       return null; // Return null if the input is valid
     }
 
-    ;
     final List<MyTextFields> registrationPageInputs = [
       MyTextFields(
         label: 'First Name',
