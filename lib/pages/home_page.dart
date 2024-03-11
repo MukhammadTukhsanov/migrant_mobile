@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:migrant/components/trip_card.dart';
 import 'package:migrant/components/trip_tools.dart';
+import 'package:migrant/pages/home_page/trip_card/trip_card_item.dart';
+import 'package:migrant/pages/home_page/trip_card/trip_card_item_model.dart';
 
 class HomePageI extends StatelessWidget {
   const HomePageI({super.key});
@@ -59,13 +60,16 @@ class HomePageI extends StatelessWidget {
               child: Column(
                 children: [
                   TripCard(
+                    card: TripCardItemModel(
                       price: "149 000",
                       startDate: "22 : 30",
                       endDate: "23 : 30",
                       startLocation: "Saint Petersburg",
                       endLocation: "Moscow",
                       user: "Alisher Haidarov",
-                      countOfFreeSeats: "5")
+                      countOfFreeSeats: "5",
+                    ),
+                  )
                 ],
               ),
             )

@@ -1,27 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:migrant/pages/home_page/trip_card/trip_card_item_model.dart';
 
 // ignore: must_be_immutable
 class TripCard extends StatelessWidget {
-  String price;
-  String startDate;
-  String endDate;
-  String startLocation;
-  String endLocation;
-  String user;
-  String countOfFreeSeats;
+  final TripCardItemModel card;
 
   int passengers = 5;
 
-  TripCard({
-    super.key,
-    required this.price,
-    required this.startDate,
-    required this.endDate,
-    required this.startLocation,
-    required this.endLocation,
-    required this.user,
-    required this.countOfFreeSeats,
-  });
+  TripCard({super.key, required this.card});
 
   @override
   Widget build(BuildContext context) {
@@ -53,11 +39,11 @@ class TripCard extends StatelessWidget {
                         child: Row(children: [
                           Column(
                             children: [
-                              Text(startDate),
+                              Text(card.startDate),
                               const SizedBox(
                                 height: 30,
                               ),
-                              Text(endDate),
+                              Text(card.endDate),
                             ],
                           ),
                           const SizedBox(
@@ -98,7 +84,7 @@ class TripCard extends StatelessWidget {
                                 width: 10,
                               ),
                               Text(
-                                startLocation,
+                                card.startLocation,
                                 style: const TextStyle(
                                     color: Color(0xff455a64),
                                     fontWeight: FontWeight.bold),
@@ -107,7 +93,7 @@ class TripCard extends StatelessWidget {
                                 height: 30,
                               ),
                               Text(
-                                endLocation,
+                                card.endLocation,
                                 style: const TextStyle(
                                     color: Color(0xff455a64),
                                     fontWeight: FontWeight.bold),
@@ -121,7 +107,7 @@ class TripCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
-                            price,
+                            card.price,
                             style: const TextStyle(
                                 color: Color(0xff455a64),
                                 fontWeight: FontWeight.bold),
@@ -149,7 +135,7 @@ class TripCard extends StatelessWidget {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(user,
+                                  Text(card.user,
                                       style: const TextStyle(
                                           color: Color(0xff455a64),
                                           fontWeight: FontWeight.bold)),
@@ -193,7 +179,7 @@ class TripCard extends StatelessWidget {
                                             color: Color(0xff546e7a),
                                           ),
                                           Text(
-                                            countOfFreeSeats,
+                                            card.countOfFreeSeats,
                                             style: const TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 color: Color(0xff546e7a)),

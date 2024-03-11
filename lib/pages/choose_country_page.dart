@@ -1,8 +1,10 @@
 import 'package:csc_picker/csc_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:migrant/providers/choose_country_provider.dart';
+import 'package:provider/provider.dart';
 
 class ChooseCountry extends StatefulWidget {
-  const ChooseCountry({super.key});
+  ChooseCountry({super.key});
 
   @override
   State<ChooseCountry> createState() => _ChooseCountryState();
@@ -92,6 +94,8 @@ class _ChooseCountryState extends State<ChooseCountry> {
                   ),
                 ),
                 onPressed: () {
+                  // print("starting ${widget.startingCountry}");
+                  // print("ending ${widget.endingCountry}");
                   Navigator.pop(context, [
                     countryValue,
                     stateValue,

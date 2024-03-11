@@ -162,7 +162,9 @@ class _LoginPageState extends State<LoginPage> {
                           borderRadius: BorderRadius.circular(10),
                         )),
                       ),
-                      onPressed: _signIn,
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/navigation');
+                      },
                       child: const Text('Login',
                           style: TextStyle(
                               color: Colors.white,

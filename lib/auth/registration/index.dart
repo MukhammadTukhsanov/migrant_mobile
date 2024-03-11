@@ -204,6 +204,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
         _emailController.text.trim(),
         _passwordController.text.trim(),
       );
+      print("user ${_auth.getCurrentUser()}");
+
       // ignore: avoid_print
       print("User is successfully created");
       // ignore: use_build_context_synchronously
@@ -229,7 +231,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
           'password': password
         })
         // ignore: avoid_print
-        .then((value) => print("User Added"))
+        .then((value) => print("value ${value.id}"))
         // ignore: avoid_print
         .catchError((error) => print("Failed to add user: $error"));
   }
