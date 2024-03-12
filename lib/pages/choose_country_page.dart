@@ -4,7 +4,8 @@ import 'package:migrant/providers/choose_country_provider.dart';
 import 'package:provider/provider.dart';
 
 class ChooseCountry extends StatefulWidget {
-  ChooseCountry({super.key});
+  String? type;
+  ChooseCountry({super.key, this.type});
 
   @override
   State<ChooseCountry> createState() => _ChooseCountryState();
@@ -94,15 +95,24 @@ class _ChooseCountryState extends State<ChooseCountry> {
                   ),
                 ),
                 onPressed: () {
-                  // print("starting ${widget.startingCountry}");
-                  // print("ending ${widget.endingCountry}");
-                  Navigator.pop(context, [
-                    countryValue,
-                    stateValue,
-                    cityValue,
-                  ]);
+                  widget.type == "start"
+                      ? Provider.of<ChooseCountryProvider>(context,
+                              listen: false)
+                          .setStartingCountry(
+                              "$countryValue $stateValue $cityValue")
+                      : widget.type == "end"
+                          ? Provider.of<ChooseCountryProvider>(context,
+                                  listen: false)
+                              .setEndingCountry(
+                                  "$countryValue $stateValue $cityValue")
+                          : null;
+                  Navigator.pop(context);
+                  //   countryValue,
+                  //   stateValue,
+                  //   cityValue,
+                  // ]);
                 },
-                child: const Text('Submit',
+                child: const Text("Save",
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,

@@ -1,10 +1,11 @@
-// import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:migrant/pages/choose_country_page.dart';
+import 'package:migrant/providers/choose_country_provider.dart';
+import 'package:provider/provider.dart';
 
 class ChooseCountryInput extends StatefulWidget {
-  const ChooseCountryInput(
-      {super.key, bool? startingCountry, bool? endingCountry});
+  VoidCallback? onTap;
+  String? type;
+  ChooseCountryInput({super.key, this.onTap, this.type});
 
   @override
   State<ChooseCountryInput> createState() => _ChooseCountryInputState();
@@ -12,39 +13,47 @@ class ChooseCountryInput extends StatefulWidget {
 
 class _ChooseCountryInputState extends State<ChooseCountryInput> {
   @override
-  List<dynamic> _startingCountryInfo = [];
-
-  // setState on changing _startingCountryInfo
-  @override
-  @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-          border: Border.all(width: 1, color: Colors.blueGrey),
-          borderRadius: BorderRadius.circular(4)),
-      child: Row(
-        children: [
-          // icon location_on and text Choose Country
-          const Icon(
-            Icons.location_on,
-            color: Colors.blueGrey,
-          ),
-          const SizedBox(
-            width: 8,
-          ),
-          Flexible(
-            child: Text(
-              _startingCountryInfo.isEmpty || _startingCountryInfo[0] == ""
-                  ? "Choose Country"
-                  : "${_startingCountryInfo[1].length > 1 ? _startingCountryInfo[0] + "," : _startingCountryInfo[0]}  ${_startingCountryInfo[2].length > 1 ? _startingCountryInfo[1] + "," : _startingCountryInfo[1]} ${_startingCountryInfo[2]}",
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
-              style: const TextStyle(fontSize: 18, color: Colors.blueGrey),
+    return GestureDetector(
+      onTap: widget.onTap,
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.only(left: 12, right: 12),
+        decoration: BoxDecoration(
+            border: Border.all(width: 1, color: Colors.blueGrey),
+            borderRadius: BorderRadius.circular(4)),
+        child: Row(
+          children: [
+            const Icon(
+              Icons.location_on,
+              color: Colors.blueGrey,
             ),
-          )
-        ],
+            const SizedBox(
+              width: 8,
+            ),
+            Text(
+              widget.type == "start" &&
+                      context
+                              .watch<ChooseCountryProvider>()
+                              .startCountry
+                              .length >
+                          2
+                  ? context.watch<ChooseCountryProvider>().startCountry
+                  : widget.type == "end" &&
+                          context
+                                  .watch<ChooseCountryProvider>()
+                                  .endCountry
+                                  .length >
+                              2
+                      ? context.watch<ChooseCountryProvider>().endCountry
+                      : "Choose Country",
+              style: const TextStyle(
+                  color: Colors.blueGrey,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500),
+            )
+          ],
+        ),
       ),
     );
   }

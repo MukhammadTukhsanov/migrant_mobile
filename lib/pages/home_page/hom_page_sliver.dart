@@ -62,7 +62,7 @@ class _HomePageSliverState extends State<HomePageSliver> {
         ),
         body: CustomScrollView(
           slivers: <Widget>[
-            const SliverAppBar(
+            SliverAppBar(
               clipBehavior: Clip.hardEdge,
               expandedHeight: 222,
               backgroundColor: Colors.white,

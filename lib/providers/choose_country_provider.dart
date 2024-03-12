@@ -1,36 +1,28 @@
 import 'package:flutter/material.dart';
 
 class ChooseCountryProvider with ChangeNotifier {
-  String _startCountry = 'Choose start Country';
+  String _startCountry = 'Choose Country';
   String _endCountry = 'Choose Country';
-  bool _isStartCountry = false;
-  bool _isEndCountry = false;
+  String _dateTime = "Today";
 
   String get startCountry => _startCountry;
   String get endCountry => _endCountry;
-  bool get isStartCountry => _isStartCountry;
-  bool get isEndCountry => _isEndCountry;
+  String get dateTime => _dateTime;
 
-  void setStartCountry(String startCountry) {
+  void setStartingCountry(String startCountry) {
     _startCountry = startCountry;
 
     notifyListeners();
   }
 
-  void setEndCountry(String endCountry) {
+  void setEndingCountry(String endCountry) {
     _endCountry = endCountry;
 
     notifyListeners();
   }
 
-  void setIsStartCountry(bool isStartCountry) {
-    _isStartCountry = isStartCountry;
-
-    notifyListeners();
-  }
-
-  void setIsEndCountry(bool isEndCountry) {
-    _isEndCountry = isEndCountry;
+  void setDateTime(String dateTime) {
+    _dateTime = dateTime;
 
     notifyListeners();
   }
