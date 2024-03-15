@@ -20,7 +20,7 @@ class FirebaseAuthService {
   }
 
   Future getCurrentUser() async {
-    return await _auth.currentUser;
+    return _auth.currentUser;
   }
 
   Future<User?> logInInWithEmailAndPassword(

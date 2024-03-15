@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:migrant/providers/choose_country_provider.dart';
 import 'package:provider/provider.dart';
 
+// ignore: must_be_immutable
 class ChooseCountry extends StatefulWidget {
   String? type;
   ChooseCountry({super.key, this.type});

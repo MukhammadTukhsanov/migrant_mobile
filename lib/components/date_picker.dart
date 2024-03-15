@@ -28,6 +28,10 @@ class _DatePickerState extends State<DatePicker> {
           decoration: InputDecoration(
             fillColor: Colors.white,
             hintText: context.watch<ChooseCountryProvider>().dateTime,
+            hintStyle: const TextStyle(
+                color: Colors.blueGrey,
+                fontSize: 16,
+                fontWeight: FontWeight.w500),
             prefixIcon: const Icon(
               Icons.calendar_today,
               color: Colors.blueGrey,
@@ -44,6 +48,20 @@ class _DatePickerState extends State<DatePicker> {
 
   Future<void> _selectDate() async {
     DateTime? picked = await showDatePicker(
+      builder: (context, child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            colorScheme: const ColorScheme.light(
+              primary: Colors.blueGrey,
+              onPrimary: Colors.white,
+              surface: Colors.white,
+              onSurface: Colors.blueGrey,
+            ),
+            dialogBackgroundColor: Colors.white,
+          ),
+          child: child!,
+        );
+      },
       // ignore: unnecessary_cast
       context: context as BuildContext,
       initialDate: initialDate,

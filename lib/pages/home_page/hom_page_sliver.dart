@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:migrant/components/date_picker.dart';
-import 'package:migrant/pages/home_page/choose_country_input.dart';
 import 'package:migrant/pages/home_page/home_page_header_card/index.dart';
 import 'package:migrant/pages/home_page/trip_card/trip_card_item.dart';
 import 'package:migrant/pages/home_page/trip_card/trip_card_item_model.dart';
@@ -60,50 +58,75 @@ class _HomePageSliverState extends State<HomePageSliver> {
             ),
           ],
         ),
-        body: CustomScrollView(
-          slivers: <Widget>[
+        body: NestedScrollView(
+          floatHeaderSlivers: true,
+          headerSliverBuilder: (context, innerBoxIsScrolled) => [
             SliverAppBar(
-              clipBehavior: Clip.hardEdge,
               expandedHeight: 222,
               backgroundColor: Colors.white,
               automaticallyImplyLeading: false,
-              floating: true,
-              elevation: 0,
-              stretch: true,
+              floating: false,
+              elevation: 1,
+              stretch: false,
               flexibleSpace: FlexibleSpaceBar(
                 background: HomePageHeader(),
               ),
             ),
-            // double app bar
-            SliverList(
-              delegate: _isLoading
-                  ? SliverChildListDelegate(List.generate(
-                      5,
-                      (index) => const Padding(
-                        // ignore: unnecessary_const
-                        padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
-                        child: TripCardSkelton(),
-                      ),
-                    ))
-                  : SliverChildListDelegate(List.generate(
-                      20,
-                      (index) => Padding(
-                        padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
-                        child: TripCard(
-                          card: TripCardItemModel(
-                            price: "149 000",
-                            startDate: "22 : 30",
-                            endDate: "06 : 30",
-                            countOfFreeSeats: "4",
-                            endLocation: "Moscow",
-                            startLocation: "Saint Petersburg",
-                            user: 'Alisher Haidarov',
-                          ),
-                        ),
-                      ),
-                    )),
-            ),
           ],
+          body: _isLoading
+              ? ListView.builder(
+                  itemCount: 5,
+                  itemBuilder: (context, index) => const Padding(
+                    padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
+                    child: TripCardSkelton(),
+                  ),
+                )
+              : ListView.builder(
+                  itemCount: 20,
+                  itemBuilder: (context, index) => Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                    child: TripCard(
+                      card: TripCardItemModel(
+                        price: "149 000",
+                        startDate: "22 : 30",
+                        endDate: "06 : 30",
+                        countOfFreeSeats: "4",
+                        endLocation: "Moscow",
+                        startLocation: "Saint Petersburg",
+                        user: 'Alisher Haidarov',
+                      ),
+                    ),
+                  ),
+                ),
+
+          // SliverList(
+          //   delegate: _isLoading
+          //       ? SliverChildListDelegate(List.generate(
+          //           5,
+          //           (index) => const Padding(
+          //             // ignore: unnecessary_const
+          //             padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+          //             child: TripCardSkelton(),
+          //           ),
+          //         ))
+          //       : SliverChildListDelegate(List.generate(
+          //           20,
+          //           (index) => Padding(
+          //             padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+          //             child: TripCard(
+          //               card: TripCardItemModel(
+          //                 price: "149 000",
+          //                 startDate: "22 : 30",
+          //                 endDate: "06 : 30",
+          //                 countOfFreeSeats: "4",
+          //                 endLocation: "Moscow",
+          //                 startLocation: "Saint Petersburg",
+          //                 user: 'Alisher Haidarov',
+          //               ),
+          //             ),
+          //           ),
+          //         )),
+          // ),
         ));
   }
 }

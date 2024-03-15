@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:migrant/pages/home_page/choose_country_input.dart';
 import 'package:migrant/profile_page/advertisement/choose_country_and_time.dart';
 
 class AddAdvertisement extends StatefulWidget {

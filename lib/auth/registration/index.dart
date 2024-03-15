@@ -204,6 +204,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
         _emailController.text.trim(),
         _passwordController.text.trim(),
       );
+      // ignore: avoid_print
       print("user ${_auth.getCurrentUser()}");
 
       // ignore: avoid_print

@@ -304,37 +304,37 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  void _signIn() async {
-    // ignore: avoid_print
-    print("Clicked");
-    String email = _emailController.text;
-    String password = _passwordController.text;
+  // void _signIn() async {
+  //   // ignore: avoid_print
+  //   print("Clicked");
+  //   String email = _emailController.text;
+  //   String password = _passwordController.text;
 
-    User? user = (await _auth.signInWithEmailAndPassword(
-      email: email,
-      password: password,
-    ))
-        .user;
+  //   User? user = (await _auth.signInWithEmailAndPassword(
+  //     email: email,
+  //     password: password,
+  //   ))
+  //       .user;
 
-    if (user != null) {
-      // user created
-      // navigate to home page
-      // ignore: avoid_print
-      print("User is successfully signed in!");
-      // ignore: use_build_context_synchronously
-      Navigator.pushNamed(context, '/navigation');
-    } else {
-      // user not created
-      // show error message
-      // ignore: duplicate_ignore
-      // ignore: use_build_context_synchronously
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Error creating user'),
-        ),
-      );
-    }
-  }
+  //   if (user != null) {
+  //     // user created
+  //     // navigate to home page
+  //     // ignore: avoid_print
+  //     print("User is successfully signed in!");
+  //     // ignore: use_build_context_synchronously
+  //     Navigator.pushNamed(context, '/navigation');
+  //   } else {
+  //     // user not created
+  //     // show error message
+  //     // ignore: duplicate_ignore
+  //     // ignore: use_build_context_synchronously
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       const SnackBar(
+  //         content: Text('Error creating user'),
+  //       ),
+  //     );
+  //   }
+  // }
 
   _signInWithGoogle() async {
     final GoogleSignIn googleSignIn = GoogleSignIn();

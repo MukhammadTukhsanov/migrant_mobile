@@ -4,9 +4,8 @@ import 'package:migrant/auth/forgot_password/index.dart';
 import 'package:migrant/auth/login/index.dart';
 import 'package:migrant/auth/registration/index.dart';
 import 'package:migrant/navbar/index.dart';
-import 'package:migrant/pages/choose_country_page.dart';
-import 'package:migrant/pages/home_page.dart';
-import 'package:migrant/pages/trip_info.dart';
+import 'package:migrant/pages/choose_country/index.dart';
+import 'package:migrant/pages/trip_info/index.dart';
 import 'package:migrant/profile_page/profile_settings_page.dart';
 import 'package:migrant/terms_and_conditions/index.dart';
 import 'package:migrant/welcom/index.dart';
@@ -25,7 +24,6 @@ class MigrantApp extends StatelessWidget {
         '/navigation': (context) => const Navigation(),
         '/trip-info': (context) => const TripInfo(),
         '/choose-country': (context) => ChooseCountry(),
-        '/home-page': (context) => const HomePageI(),
         '/profile-settings': (context) => const ProfileSettings(),
         '/change-password': (context) => const ChangePassword(),
         '/terms-and-conditions': (context) => const TermsAndConditions(),

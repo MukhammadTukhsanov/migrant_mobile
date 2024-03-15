@@ -45,11 +45,9 @@ class _ChooseCountryAndTimeState extends State<ChooseCountryAndTime> {
         ),
         Row(
           children: [
-            // Expanded(
-            //   child: ChooseCountryInput(
-
-            //   ),
-            // ),
+            Expanded(
+              child: ChooseCountryInput(),
+            ),
             const SizedBox(
               width: 10,
             ),

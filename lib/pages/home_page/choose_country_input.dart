@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:migrant/providers/choose_country_provider.dart';
 import 'package:provider/provider.dart';
 
+// ignore: must_be_immutable
 class ChooseCountryInput extends StatefulWidget {
   VoidCallback? onTap;
   String? type;
@@ -17,6 +18,7 @@ class _ChooseCountryInputState extends State<ChooseCountryInput> {
     return GestureDetector(
       onTap: widget.onTap,
       child: Container(
+        height: 52,
         width: double.infinity,
         padding: const EdgeInsets.only(left: 12, right: 12),
         decoration: BoxDecoration(
