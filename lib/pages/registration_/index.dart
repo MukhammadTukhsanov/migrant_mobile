@@ -2,11 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:migrant/auth/auth_components/button.dart';
 import 'package:migrant/auth/firebase_implementation/firebase_uth_services.dart';
-import 'package:migrant/auth/login/index.dart';
+import 'package:migrant/components/buttons.dart' as button;
+import 'package:migrant/components/gap.dart';
+import 'package:migrant/components/outlined_input.dart';
+import 'package:migrant/pages/login_/index.dart';
 import 'package:migrant/auth/auth_components/header.dart';
-import 'package:migrant/auth/registration/inputs_controller.dart';
 
 class RegistrationPage extends StatefulWidget {
   const RegistrationPage({super.key});
@@ -25,8 +26,35 @@ class _RegistrationPageState extends State<RegistrationPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
-  final bool _passwordObscureText = true;
-  final bool _confirmPasswordObscureText = true;
+  bool _passwordObscureText = true;
+  bool _confirmPasswordObscureText = true;
+
+  checkValidateToEmpty(String? value) {
+    if (value!.isEmpty) {
+      return 'Please enter your first name';
+    }
+  }
+
+  checkValidateToEmail(String? value) {
+    if (value!.isEmpty) {
+      return 'Please enter an email address';
+    } else if (!RegExp(r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$')
+        .hasMatch(value)) {
+      return 'Please enter a valid email address';
+    }
+    return null; // Return null if the input is valid
+  }
+
+  checkValidateToPassword(String? value) {
+    if (value!.isEmpty) {
+      return 'Please enter a password';
+    } else if (value.length < 6) {
+      return 'Password must be at least 6 characters long';
+    } else if (_passwordController.text != _confirmPasswordController.text) {
+      return 'Passwords do not match';
+    }
+    return null; // Return null if the input is valid
+  }
 
   // form key
   final _formKey = GlobalKey<FormState>();
@@ -69,25 +97,95 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             subTitle:
                                 'Use the account you created to sign in to Gmail',
                           ),
-                          const SizedBox(
-                            height: 40,
-                          ),
+                          Gap(size: 40),
                           // map inputs from _registration_page_inputs
+                          InputOutlined(
+                              keyboardType: TextInputType.emailAddress,
+                              controller: _emailController,
+                              labelText: 'First Name',
+                              prefixIcon: Icons.person,
+                              suffixIcon: IconButton(
+                                onPressed: () => _firstnameController.clear(),
+                                icon: Icon(
+                                  Icons.clear,
+                                  size: 20,
+                                  color: Colors.blueGrey.shade400,
+                                ),
+                              )),
+                          Gap(size: 20),
+                          InputOutlined(
+                              keyboardType: TextInputType.emailAddress,
+                              controller: _emailController,
+                              labelText: 'Last Name',
+                              prefixIcon: Icons.person,
+                              suffixIcon: IconButton(
+                                onPressed: () => _lastnameController.clear(),
+                                icon: Icon(
+                                  Icons.clear,
+                                  size: 20,
+                                  color: Colors.blueGrey.shade400,
+                                ),
+                              )),
 
-                          RegistrationPageInputs(
-                            firstNameController: _firstnameController,
-                            lastNameController: _lastnameController,
-                            emailController: _emailController,
-                            passwordController: _passwordController,
-                            confirmPasswordController:
-                                _confirmPasswordController,
-                            passwordObscureText: _passwordObscureText,
-                            confirmPasswordObscureText:
-                                _confirmPasswordObscureText,
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
+                          Gap(size: 20),
+                          InputOutlined(
+                              keyboardType: TextInputType.emailAddress,
+                              controller: _emailController,
+                              labelText: 'Email',
+                              prefixIcon: Icons.email,
+                              suffixIcon: IconButton(
+                                onPressed: () => _emailController.clear(),
+                                icon: Icon(
+                                  Icons.clear,
+                                  size: 20,
+                                  color: Colors.blueGrey.shade400,
+                                ),
+                              )),
+                          Gap(size: 20),
+                          InputOutlined(
+                              keyboardType: TextInputType.visiblePassword,
+                              controller: _passwordController,
+                              labelText: 'Password',
+                              obscureText: _passwordObscureText,
+                              prefixIcon: Icons.lock,
+                              suffixIcon: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    _passwordObscureText =
+                                        !_passwordObscureText;
+                                  });
+                                },
+                                icon: Icon(
+                                  _passwordObscureText
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                  size: 20,
+                                  color: Colors.blueGrey.shade400,
+                                ),
+                              )),
+                          Gap(size: 20),
+                          InputOutlined(
+                              keyboardType: TextInputType.visiblePassword,
+                              controller: _confirmPasswordController,
+                              labelText: 'Confirm Password',
+                              obscureText: _confirmPasswordObscureText,
+                              prefixIcon: Icons.lock,
+                              suffixIcon: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    _confirmPasswordObscureText =
+                                        !_confirmPasswordObscureText;
+                                  });
+                                },
+                                icon: Icon(
+                                  _confirmPasswordObscureText
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                  size: 20,
+                                  color: Colors.blueGrey.shade400,
+                                ),
+                              )),
+                          Gap(size: 20),
                           // To sign up {Gmail}, create a {Google Account}. You can use the username and password to {sign}.
                           RichText(
                             textAlign: TextAlign.center,
@@ -102,9 +200,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 TextSpan(
                                   text: 'Gmail',
                                   style: TextStyle(
-                                    color: Colors.blue,
+                                    color: Colors.blueGrey,
                                     fontSize: 14,
-                                    fontWeight: FontWeight.w400,
+                                    fontWeight: FontWeight.w900,
                                   ),
                                 ),
                                 TextSpan(
@@ -118,9 +216,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 TextSpan(
                                   text: 'Google Account',
                                   style: TextStyle(
-                                    color: Colors.blue,
+                                    color: Colors.blueGrey,
                                     fontSize: 14,
-                                    fontWeight: FontWeight.w400,
+                                    fontWeight: FontWeight.w900,
                                   ),
                                 ),
                                 TextSpan(
@@ -135,9 +233,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 TextSpan(
                                   text: 'sign',
                                   style: TextStyle(
-                                    color: Colors.blue,
+                                    color: Colors.blueGrey,
                                     fontSize: 14,
-                                    fontWeight: FontWeight.w400,
+                                    fontWeight: FontWeight.w900,
                                   ),
                                 ),
                               ],
@@ -147,12 +245,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           const SizedBox(
                             height: 20,
                           ),
-                          AuthPagesBtn(
-                            onPressed: () {
-                              if (_formKey.currentState!.validate()) {
-                                _signUp();
-                              }
-                            },
+                          // sign up button
+                          button.FillButton(
+                            text: "Create Account",
+                            onPress: () {},
                           ),
                         ],
                       ),
@@ -165,7 +261,12 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text("Already have an account? "),
+                    const Text("Already have an account? ",
+                        style: TextStyle(
+                          color: Colors.blueGrey,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                        )),
                     GestureDetector(
                       onTap: () {
                         Navigator.push(
@@ -173,10 +274,14 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             CupertinoPageRoute(
                                 builder: (context) => const LoginPage()));
                       },
-                      child: const Text(
-                        'Sign In',
-                        style: TextStyle(
-                            color: Colors.blue, fontWeight: FontWeight.bold),
+                      child: button.TextButton(
+                        onPress: () {
+                          Navigator.push(
+                              context,
+                              CupertinoPageRoute(
+                                  builder: (context) => const LoginPage()));
+                        },
+                        text: "Sign In",
                       ),
                     ),
                   ],

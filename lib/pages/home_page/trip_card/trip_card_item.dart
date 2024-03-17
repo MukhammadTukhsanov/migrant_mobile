@@ -14,10 +14,12 @@ class TripCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, '/trip-info');
+        // Navigator
       },
       child: Container(
+          margin:
+              const EdgeInsets.only(bottom: 10, left: 16, right: 16, top: 10),
           width: double.infinity,
-          // height: 200,
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
@@ -199,7 +201,7 @@ class TripCard extends StatelessWidget {
                             ],
                           ))
                     ],
-                  )
+                  ),
                 ],
               ))),
     );

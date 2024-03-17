@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:migrant/auth/login/index.dart';
-import 'package:migrant/auth/registration/index.dart';
+import 'package:migrant/pages/login_/index.dart';
+import 'package:migrant/pages/registration_/index.dart';
 import 'package:migrant/navbar/index.dart';
 
 class WelcomePage extends StatefulWidget {

@@ -2,8 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:migrant/auth/login/index.dart';
+import 'package:migrant/pages/login_/index.dart';
 import 'package:migrant/profile_page/advertisement/add_advertisement.dart';
+import 'package:migrant/profile_page/advertisement/my_advertisement.dart';
+import 'package:migrant/verify_profile/index.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 //ignore: must_be_immutable
@@ -265,8 +267,10 @@ class _LogedProfileState extends State<LogedProfile> {
                             // user phone nummber
                             ListTile(
                               onTap: () {
-                                // ignore: deprecated_member_use
-                                launch("tel://${widget.userPhone}");
+                                if (widget.isVerified) {
+                                  // ignore: deprecated_member_use
+                                  // launch("tel://${widget.userPhone}");
+                                }
                               },
                               leading: const Icon(
                                 Icons.phone,
@@ -284,12 +288,45 @@ class _LogedProfileState extends State<LogedProfile> {
                                   color: Colors.blueGrey,
                                 ),
                               ),
+                              // not verified box with text
+                              trailing: widget.isVerified
+                                  ? const SizedBox()
+                                  : GestureDetector(
+                                      onTap: () {
+                                        // Navigator push to verifyProfile page
+                                        Navigator.push(
+                                            context,
+                                            CupertinoPageRoute(
+                                                builder: (context) =>
+                                                    const VerifiyProfile()));
+                                      },
+                                      child: Container(
+                                        padding: const EdgeInsets.only(
+                                            left: 10,
+                                            right: 10,
+                                            top: 5,
+                                            bottom: 5),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          border: Border.all(
+                                              color: Colors.blueGrey, width: 1),
+                                        ),
+                                        child: const Text(
+                                          "Verify",
+                                          style: TextStyle(
+                                            color: Colors.blueGrey,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
                             ),
                             // user email
                             ListTile(
                               onTap: () {
                                 // ignore: deprecated_member_use
-                                launch("mailto: ${widget.userEmail}");
+                                // launch("mailto: ${widget.userEmail}");
                               },
                               leading: const Icon(
                                 Icons.email,
@@ -314,68 +351,133 @@ class _LogedProfileState extends State<LogedProfile> {
                       height: 20,
                     ),
 
-                    Container(
-                      width: MediaQuery.of(context).size.width - 32,
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.blueGrey,
-                            spreadRadius: 0,
-                            blurRadius: 4,
-                            offset: Offset(0, 0),
-                          ),
-                        ],
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          children: [
-                            // add advertisements
-                            ListTile(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    CupertinoPageRoute(
-                                        builder: (context) =>
-                                            const AddAdvertisement()));
-                              },
-                              leading: const Icon(
-                                Icons.add,
-                                color: Colors.blueGrey,
-                              ),
-                              title: const Text(
-                                'Add Advertisement',
-                                style: TextStyle(
-                                  color: Colors.blueGrey,
-                                ),
-                              ),
-                            ),
-                            // my advertisements
-                            ListTile(
-                              onTap: () {
-                                // Navigator.push(
-                                // context, CupertinoPageRoute(builder: (context) => const MyAdvertisements());
-                              },
-                              leading: const Icon(
-                                Icons.list,
-                                color: Colors.blueGrey,
-                              ),
-                              title: const Text(
-                                'My Advertisements',
-                                style: TextStyle(
-                                  color: Colors.blueGrey,
-                                ),
-                              ),
+                    if (!widget.isPassanger)
+                      Container(
+                        width: MediaQuery.of(context).size.width - 32,
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.blueGrey,
+                              spreadRadius: 0,
+                              blurRadius: 4,
+                              offset: Offset(0, 0),
                             ),
                           ],
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            children: [
+                              // add advertisements
+                              ListTile(
+                                onTap: () {
+                                  if (widget.isVerified) {
+                                    Navigator.push(
+                                        context,
+                                        CupertinoPageRoute(
+                                            builder: (context) =>
+                                                const AddAdvertisement()));
+                                  }
+                                },
+                                leading: Icon(
+                                  Icons.add,
+                                  color: widget.isVerified
+                                      ? Colors.blueGrey
+                                      : Colors.blueGrey.shade200,
+                                ),
+                                title: Text(
+                                  'Add Advertisement',
+                                  style: TextStyle(
+                                    color: widget.isVerified
+                                        ? Colors.blueGrey
+                                        : Colors.blueGrey.shade200,
+                                  ),
+                                ),
+                                trailing: widget.isVerified
+                                    ? const SizedBox()
+                                    : GestureDetector(
+                                        onTap: () {},
+                                        child: Container(
+                                          padding: const EdgeInsets.only(
+                                              left: 10,
+                                              right: 10,
+                                              top: 5,
+                                              bottom: 5),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                          ),
+                                          child: const Text(
+                                            "Not verified",
+                                            style: TextStyle(
+                                              color: Colors.redAccent,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                              ),
+                              // my advertisements
+                              ListTile(
+                                onTap: () {
+                                  if (widget.isVerified) {
+                                    Navigator.push(
+                                        context,
+                                        CupertinoPageRoute(
+                                            builder: (context) =>
+                                                const MyAdvertisements()));
+                                  }
+                                },
+                                leading: Icon(
+                                  Icons.list,
+                                  // color: Colors.blueGrey,
+                                  color: widget.isVerified
+                                      ? Colors.blueGrey
+                                      : Colors.blueGrey.shade200,
+                                ),
+                                title: Text(
+                                  'My Advertisements',
+                                  style: TextStyle(
+                                    color: widget.isVerified
+                                        ? Colors.blueGrey
+                                        : Colors.blueGrey.shade200,
+                                  ),
+                                ),
+                                trailing: widget.isVerified
+                                    ? const SizedBox()
+                                    : GestureDetector(
+                                        onTap: () {},
+                                        child: Container(
+                                          padding: const EdgeInsets.only(
+                                              left: 10,
+                                              right: 10,
+                                              top: 5,
+                                              bottom: 5),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                          ),
+                                          child: const Text(
+                                            "Not verified",
+                                            style: TextStyle(
+                                              color: Colors.redAccent,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+
+                    if (!widget.isPassanger)
+                      const SizedBox(
+                        height: 20,
+                      ),
                     Container(
                       width: MediaQuery.of(context).size.width - 32,
                       decoration: const BoxDecoration(

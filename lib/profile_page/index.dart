@@ -15,8 +15,8 @@ class _ProfilePageState extends State<ProfilePage> {
     return LogedProfile(
       userName: "Theresea",
       userSurname: "Schröder",
-      isVerified: true,
-      isPassanger: true,
+      isVerified: false,
+      isPassanger: false,
       userImage: "https://mighty.tools/mockmind-api/content/human/6.jpg",
       userPhone: "+49 123 456 789",
       userEmail: "theresa89@domain.ltd",

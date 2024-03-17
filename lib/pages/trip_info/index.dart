@@ -8,6 +8,8 @@ class TripInfo extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
+        // foregroundColor: Colors.red,
+        forceMaterialTransparency: false,
         title: const Text('Migrant'),
         backgroundColor: Colors.white,
       ),
@@ -39,7 +41,7 @@ class TripInfo extends StatelessWidget {
                                     height: 10,
                                     child: DecoratedBox(
                                       decoration: BoxDecoration(
-                                        color: Colors.green,
+                                        color: Colors.blueGrey,
                                         borderRadius: BorderRadius.circular(10),
                                       ),
                                     ),
@@ -62,7 +64,7 @@ class TripInfo extends StatelessWidget {
                                     height: 10,
                                     child: DecoratedBox(
                                       decoration: BoxDecoration(
-                                        color: Colors.green,
+                                        color: Colors.blueGrey,
                                         borderRadius: BorderRadius.circular(10),
                                       ),
                                     ),
@@ -219,7 +221,7 @@ class TripInfo extends StatelessWidget {
 
                     Row(
                       children: [
-                        Icon(Icons.verified_user, color: Colors.blueAccent),
+                        Icon(Icons.verified_user, color: Colors.blueGrey),
                         SizedBox(width: 15),
                         Text(
                           'Профиль подтвержден',
@@ -246,7 +248,7 @@ class TripInfo extends StatelessWidget {
                     SizedBox(height: 30),
                     Row(
                       children: [
-                        Icon(Icons.directions_car, color: Colors.blueAccent),
+                        Icon(Icons.directions_car, color: Colors.blueGrey),
                         SizedBox(width: 15),
                         Text(
                           'Toyota Camry',
@@ -263,7 +265,7 @@ class TripInfo extends StatelessWidget {
                     SizedBox(height: 30),
                     Row(
                       children: [
-                        Icon(Icons.phone, color: Colors.blueAccent),
+                        Icon(Icons.phone, color: Colors.blueGrey),
                         SizedBox(width: 15),
                         Text(
                           'Позвонить',
@@ -280,7 +282,7 @@ class TripInfo extends StatelessWidget {
                     SizedBox(height: 30),
                     Row(
                       children: [
-                        Icon(Icons.message, color: Colors.blueAccent),
+                        Icon(Icons.message, color: Colors.blueGrey),
                         SizedBox(width: 15),
                         Text(
                           'Написать',
@@ -297,7 +299,7 @@ class TripInfo extends StatelessWidget {
                     SizedBox(height: 30),
                     Row(
                       children: [
-                        Icon(Icons.flag, color: Colors.blueAccent),
+                        Icon(Icons.flag, color: Colors.blueGrey),
                         SizedBox(width: 15),
                         Text(
                           'Пожаловаться',

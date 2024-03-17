@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:migrant/auth/change_pasword/index.dart';
-import 'package:migrant/auth/forgot_password/index.dart';
-import 'package:migrant/auth/login/index.dart';
-import 'package:migrant/auth/registration/index.dart';
+import 'package:migrant/pages/forget_password_/index.dart';
+import 'package:migrant/pages/login_/index.dart';
+import 'package:migrant/pages/registration_/index.dart';
 import 'package:migrant/navbar/index.dart';
 import 'package:migrant/pages/choose_country/index.dart';
 import 'package:migrant/pages/trip_info/index.dart';

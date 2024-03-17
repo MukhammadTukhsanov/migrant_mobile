@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:migrant/controller/index.dart';
+import 'package:migrant/controllers/index.dart';
 // import 'package:migrant/pages/search_main.dart';
 
 class Navigation extends StatefulWidget {
