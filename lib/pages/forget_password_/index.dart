@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:migrant/components/gap.dart';
-import 'package:migrant/components/outlined_input.dart';
+import 'package:migrant/components/input_outlined.dart';
 import 'package:migrant/pages/login_/index.dart';
 import 'package:migrant/components/buttons.dart' as buttons;
 

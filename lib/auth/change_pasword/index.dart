@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:migrant/components/gap.dart';
 
 class ChangePassword extends StatefulWidget {
   const ChangePassword({super.key});
@@ -33,9 +34,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
                   children: [
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    Gap(size: 20),
                     TextField(
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.all(16.0),
@@ -45,9 +44,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    Gap(size: 20),
                     TextField(
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.all(16.0),
@@ -57,9 +54,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    Gap(size: 20),
                     TextField(
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.all(16.0),
@@ -69,9 +64,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    Gap(size: 20),
                     ElevatedButton(
                       onPressed: null,
                       style: ButtonStyle(
@@ -89,9 +82,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                             color: Colors.white,
                           )),
                     ),
-                    const SizedBox(
-                      height: 30,
-                    ),
+                    Gap(size: 30),
                   ],
                 ),
               ),

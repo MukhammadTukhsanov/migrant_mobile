@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:migrant/components/gap.dart';
 
 class SeatPicker extends StatefulWidget {
   const SeatPicker({super.key});
@@ -35,7 +36,7 @@ class _SeatPickerState extends State<SeatPicker> {
               children: [
                 const Icon(Icons.airline_seat_recline_extra_rounded,
                     color: Colors.blueGrey),
-                const SizedBox(width: 8),
+                Gap(size: 8),
                 Text(_freeSeatCount,
                     style: const TextStyle(
                         color: Colors.blueGrey,

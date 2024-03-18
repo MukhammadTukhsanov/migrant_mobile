@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:migrant/components/gap.dart';
 import 'package:migrant/pages/home_page/trip_card/trip_card_item_model.dart';
 
 // ignore: must_be_immutable
@@ -42,15 +43,11 @@ class TripCard extends StatelessWidget {
                           Column(
                             children: [
                               Text(card.startDate),
-                              const SizedBox(
-                                height: 30,
-                              ),
+                              Gap(size: 30),
                               Text(card.endDate),
                             ],
                           ),
-                          const SizedBox(
-                            width: 10,
-                          ),
+                          Gap(size: 10),
                           Column(
                             children: [
                               Container(
@@ -76,9 +73,7 @@ class TripCard extends StatelessWidget {
                               ),
                             ],
                           ),
-                          const SizedBox(
-                            width: 10,
-                          ),
+                          Gap(size: 10),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -91,9 +86,7 @@ class TripCard extends StatelessWidget {
                                     color: Color(0xff455a64),
                                     fontWeight: FontWeight.bold),
                               ),
-                              const SizedBox(
-                                height: 30,
-                              ),
+                              Gap(size: 30),
                               Text(
                                 card.endLocation,
                                 style: const TextStyle(
@@ -118,9 +111,7 @@ class TripCard extends StatelessWidget {
                       ))
                     ],
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  Gap(size: 20),
                   Row(
                     children: [
                       Expanded(
@@ -131,9 +122,7 @@ class TripCard extends StatelessWidget {
                                 backgroundColor: Colors.grey[400],
                                 child: const Text('AH'),
                               ),
-                              const SizedBox(
-                                width: 10,
-                              ),
+                              Gap(size: 10),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -141,11 +130,11 @@ class TripCard extends StatelessWidget {
                                       style: const TextStyle(
                                           color: Color(0xff455a64),
                                           fontWeight: FontWeight.bold)),
-                                  const Row(children: [
-                                    Icon(Icons.star,
+                                  Row(children: [
+                                    const Icon(Icons.star,
                                         color: Colors.yellow, size: 16),
-                                    SizedBox(width: 5),
-                                    Text(
+                                    Gap(size: 5),
+                                    const Text(
                                       '4.5',
                                       style: TextStyle(
                                           fontSize: 12,

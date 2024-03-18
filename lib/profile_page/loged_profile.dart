@@ -2,11 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:migrant/components/gap.dart';
 import 'package:migrant/pages/login_/index.dart';
 import 'package:migrant/profile_page/advertisement/add_advertisement.dart';
 import 'package:migrant/profile_page/advertisement/my_advertisement.dart';
 import 'package:migrant/verify_profile/index.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 //ignore: must_be_immutable
 class LogedProfile extends StatefulWidget {
@@ -125,9 +125,7 @@ class _LogedProfileState extends State<LogedProfile> {
                                           right: 0,
                                           child: Center(
                                             child: Column(children: [
-                                              const SizedBox(
-                                                height: 110,
-                                              ),
+                                              Gap(size: 110),
                                               Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
@@ -141,9 +139,7 @@ class _LogedProfileState extends State<LogedProfile> {
                                                     ),
                                                   ),
                                                   // verified user
-                                                  const SizedBox(
-                                                    width: 6,
-                                                  ),
+                                                  Gap(size: 6),
                                                   // verified user
                                                   if (widget.isVerified)
                                                     const Icon(
@@ -162,9 +158,7 @@ class _LogedProfileState extends State<LogedProfile> {
                                                     color: Colors.grey,
                                                     size: 18,
                                                   ),
-                                                  const SizedBox(
-                                                    width: 6,
-                                                  ),
+                                                  Gap(size: 6),
                                                   Text(
                                                     widget.userLocation,
                                                     style: const TextStyle(
@@ -175,9 +169,7 @@ class _LogedProfileState extends State<LogedProfile> {
                                                   // verified user
                                                 ],
                                               ),
-                                              const SizedBox(
-                                                height: 3,
-                                              ),
+                                              Gap(size: 3),
                                               Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
@@ -195,9 +187,7 @@ class _LogedProfileState extends State<LogedProfile> {
                                                       color: Colors.blueGrey,
                                                       size: 18,
                                                     ),
-                                                  const SizedBox(
-                                                    width: 6,
-                                                  ),
+                                                  Gap(size: 6),
                                                   if (widget.isPassanger)
                                                     const Text("Passanger",
                                                         style: TextStyle(
@@ -210,22 +200,16 @@ class _LogedProfileState extends State<LogedProfile> {
                                                           color:
                                                               Colors.blueGrey,
                                                         )),
-                                                  const SizedBox(
-                                                    width: 6,
-                                                  ),
+                                                  Gap(size: 6),
 
-                                                  const SizedBox(
-                                                    width: 6,
-                                                  ),
+                                                  Gap(size: 6),
                                                   // user rayting
                                                   const Icon(
                                                     Icons.star,
                                                     color: Colors.blueGrey,
                                                     size: 18,
                                                   ),
-                                                  const SizedBox(
-                                                    width: 6,
-                                                  ),
+                                                  Gap(size: 6),
                                                   Text(
                                                       widget.userRating
                                                           .toString(),
@@ -243,9 +227,7 @@ class _LogedProfileState extends State<LogedProfile> {
                                 )),
                           ],
                         )),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    Gap(size: 20),
                     Container(
                       width: MediaQuery.of(context).size.width - 32,
                       decoration: const BoxDecoration(
@@ -347,9 +329,7 @@ class _LogedProfileState extends State<LogedProfile> {
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    Gap(size: 20),
 
                     if (!widget.isPassanger)
                       Container(
@@ -474,10 +454,7 @@ class _LogedProfileState extends State<LogedProfile> {
                         ),
                       ),
 
-                    if (!widget.isPassanger)
-                      const SizedBox(
-                        height: 20,
-                      ),
+                    if (!widget.isPassanger) Gap(size: 20),
                     Container(
                       width: MediaQuery.of(context).size.width - 32,
                       decoration: const BoxDecoration(
@@ -550,9 +527,7 @@ class _LogedProfileState extends State<LogedProfile> {
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    Gap(size: 20),
                     // date of registration
                     const Text(
                       'Registered on 12.12.2021',

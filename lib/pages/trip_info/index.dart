@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:migrant/components/gap.dart';
 
 class TripInfo extends StatelessWidget {
   const TripInfo({super.key});
@@ -35,7 +36,7 @@ class TripInfo extends StatelessWidget {
                               Row(
                                 children: [
                                   const Text('22:30'),
-                                  const SizedBox(width: 10),
+                                  Gap(size: 10),
                                   SizedBox(
                                     width: 10,
                                     height: 10,
@@ -46,7 +47,7 @@ class TripInfo extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(width: 10),
+                                  Gap(size: 10),
                                   const Text(
                                     'Moscow',
                                     style:
@@ -54,11 +55,11 @@ class TripInfo extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              const SizedBox(height: 10),
+                              Gap(size: 10),
                               Row(
                                 children: [
                                   const Text('23:30'),
-                                  const SizedBox(width: 10),
+                                  Gap(size: 10),
                                   SizedBox(
                                     width: 10,
                                     height: 10,
@@ -69,7 +70,7 @@ class TripInfo extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(width: 10),
+                                  Gap(size: 10),
                                   const Text(
                                     'St. Petersburg',
                                     style:
@@ -80,23 +81,23 @@ class TripInfo extends StatelessWidget {
                             ],
                           ),
                         ),
-                        const Expanded(
+                        Expanded(
                           child: Column(
                             children: [
-                              Text('1 hour'),
-                              SizedBox(height: 10),
-                              Text('1 hour'),
+                              const Text('1 hour'),
+                              Gap(size: 10),
+                              const Text('1 hour'),
                             ],
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 10),
-                    const Row(
+                    Gap(size: 10),
+                    Row(
                       children: [
-                        Text('Total time:'),
-                        SizedBox(width: 10),
-                        Text('2 hours'),
+                        const Text('Total time:'),
+                        Gap(size: 10),
+                        const Text('2 hours'),
                       ],
                     ),
                   ],
@@ -107,7 +108,7 @@ class TripInfo extends StatelessWidget {
             // end of box for trip info
 
             // box for separator
-            const SizedBox(height: 10),
+            Gap(size: 10),
             // end of box for separator
 
             // box for price
@@ -142,7 +143,7 @@ class TripInfo extends StatelessWidget {
             // end of box for price
 
             // box for separator
-            const SizedBox(height: 10),
+            Gap(size: 10),
             // end of box for separator
 
             // box for driver info
@@ -151,8 +152,8 @@ class TripInfo extends StatelessWidget {
               decoration: const BoxDecoration(
                 color: Colors.white,
               ),
-              child: const Padding(
-                padding: EdgeInsets.all(16.0),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
                 child: Column(
                   children: [
                     Row(
@@ -161,41 +162,41 @@ class TripInfo extends StatelessWidget {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                            const Text(
                               "Alisher Haidarov",
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
-                            SizedBox(height: 5),
+                            Gap(size: 5),
                             Row(
                               children: [
-                                Icon(Icons.star,
+                                const Icon(Icons.star,
                                     color: Colors.yellow, size: 16),
-                                SizedBox(width: 5),
-                                Text(
+                                Gap(size: 5),
+                                const Text(
                                   '4.5',
                                   style: TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Text(
+                                const Text(
                                   ' / ',
                                   style: TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Text(
+                                const Text(
                                   '5',
                                   style: TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Text(
+                                const Text(
                                   ' - ',
                                   style: TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Text(
+                                const Text(
                                   '5 отзывов',
                                   style: TextStyle(
                                       fontSize: 12,
@@ -207,7 +208,7 @@ class TripInfo extends StatelessWidget {
                         ),
 
                         // driver avatar
-                        CircleAvatar(
+                        const CircleAvatar(
                           backgroundColor: Colors.grey,
                           child: Text('AH'),
                         ),
@@ -216,14 +217,14 @@ class TripInfo extends StatelessWidget {
                     ),
 
                     // box for separator
-                    SizedBox(height: 10),
+                    Gap(size: 10),
                     // end of box for separator
 
                     Row(
                       children: [
-                        Icon(Icons.verified_user, color: Colors.blueGrey),
-                        SizedBox(width: 15),
-                        Text(
+                        const Icon(Icons.verified_user, color: Colors.blueGrey),
+                        Gap(size: 15),
+                        const Text(
                           'Профиль подтвержден',
                           style: TextStyle(
                             color: Color(0xff757575),
@@ -231,26 +232,27 @@ class TripInfo extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 30),
-                    Divider(
+                    Gap(size: 30),
+                    const Divider(
                       height: 1,
                     ),
-                    SizedBox(height: 30),
-                    Text(
+                    Gap(size: 30),
+                    const Text(
                         "Здравствуйте, я водитель с большим стажем. Помогу вам доехать в любую точку города. В моем автомобиле вы будете чувствовать себя комфортно и безопасно.",
                         style: TextStyle(
                           color: Color(0xff757575),
                         )),
-                    SizedBox(height: 30),
-                    Divider(
+                    Gap(size: 30),
+                    const Divider(
                       height: 1,
                     ),
-                    SizedBox(height: 30),
+                    Gap(size: 30),
                     Row(
                       children: [
-                        Icon(Icons.directions_car, color: Colors.blueGrey),
-                        SizedBox(width: 15),
-                        Text(
+                        const Icon(Icons.directions_car,
+                            color: Colors.blueGrey),
+                        Gap(size: 15),
+                        const Text(
                           'Toyota Camry',
                           style: TextStyle(
                             color: Color(0xff757575),
@@ -258,16 +260,16 @@ class TripInfo extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 30),
-                    Divider(
+                    Gap(size: 30),
+                    const Divider(
                       height: 1,
                     ),
-                    SizedBox(height: 30),
+                    Gap(size: 30),
                     Row(
                       children: [
-                        Icon(Icons.phone, color: Colors.blueGrey),
-                        SizedBox(width: 15),
-                        Text(
+                        const Icon(Icons.phone, color: Colors.blueGrey),
+                        Gap(size: 15),
+                        const Text(
                           'Позвонить',
                           style: TextStyle(
                             color: Color(0xff757575),
@@ -275,16 +277,16 @@ class TripInfo extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 30),
-                    Divider(
+                    Gap(size: 30),
+                    const Divider(
                       height: 1,
                     ),
-                    SizedBox(height: 30),
+                    Gap(size: 30),
                     Row(
                       children: [
-                        Icon(Icons.message, color: Colors.blueGrey),
-                        SizedBox(width: 15),
-                        Text(
+                        const Icon(Icons.message, color: Colors.blueGrey),
+                        Gap(size: 15),
+                        const Text(
                           'Написать',
                           style: TextStyle(
                             color: Color(0xff757575),
@@ -292,16 +294,16 @@ class TripInfo extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 30),
-                    Divider(
+                    Gap(size: 30),
+                    const Divider(
                       height: 1,
                     ),
-                    SizedBox(height: 30),
+                    Gap(size: 30),
                     Row(
                       children: [
-                        Icon(Icons.flag, color: Colors.blueGrey),
-                        SizedBox(width: 15),
-                        Text(
+                        const Icon(Icons.flag, color: Colors.blueGrey),
+                        Gap(size: 15),
+                        const Text(
                           'Пожаловаться',
                           style: TextStyle(
                             color: Color(0xff757575),
@@ -309,11 +311,11 @@ class TripInfo extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 30),
-                    Divider(
+                    Gap(size: 30),
+                    const Divider(
                       height: 1,
                     ),
-                    SizedBox(height: 30),
+                    Gap(size: 30),
                   ],
                 ),
               ),

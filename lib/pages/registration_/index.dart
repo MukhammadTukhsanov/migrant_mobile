@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:migrant/auth/firebase_implementation/firebase_uth_services.dart';
 import 'package:migrant/components/buttons.dart' as button;
 import 'package:migrant/components/gap.dart';
-import 'package:migrant/components/outlined_input.dart';
+import 'package:migrant/components/input_outlined.dart';
 import 'package:migrant/pages/login_/index.dart';
 import 'package:migrant/auth/auth_components/header.dart';
 
@@ -242,9 +242,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             ),
                           ),
 
-                          const SizedBox(
-                            height: 20,
-                          ),
+                          Gap(size: 20),
                           // sign up button
                           button.FillButton(
                             text: "Create Account",
@@ -292,6 +290,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
         ));
   }
 
+  // ignore: unused_element
   void _signUp() async {
     String email = _emailController.text;
     String password = _passwordController.text;

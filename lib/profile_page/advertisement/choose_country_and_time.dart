@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:migrant/components/gap.dart';
 import 'package:migrant/pages/home_page/choose_country_input.dart';
 
 class ChooseCountryAndTime extends StatefulWidget {
@@ -27,9 +28,7 @@ class _ChooseCountryAndTimeState extends State<ChooseCountryAndTime> {
                 ),
               ),
             ),
-            const SizedBox(
-              width: 10,
-            ),
+            Gap(size: 10),
             SizedBox(
               width: 100,
               child: Text(
@@ -48,9 +47,7 @@ class _ChooseCountryAndTimeState extends State<ChooseCountryAndTime> {
             Expanded(
               child: ChooseCountryInput(),
             ),
-            const SizedBox(
-              width: 10,
-            ),
+            Gap(size: 10),
             // time picker
             Container(
               width: 100,

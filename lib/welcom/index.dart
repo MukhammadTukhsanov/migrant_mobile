@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:migrant/components/gap.dart';
 import 'package:migrant/pages/login_/index.dart';
 import 'package:migrant/pages/registration_/index.dart';
 import 'package:migrant/navbar/index.dart';
@@ -27,12 +28,12 @@ class _WelcomePageState extends State<WelcomePage> {
           child: Align(
             child: Column(
                 children: <Widget>[
-              SizedBox(height: MediaQuery.of(context).size.height / 2),
+              Gap(size: MediaQuery.of(context).size.height / 2),
               // image assets/images/welcomeLogo
               const Image(
                   image: AssetImage("assets/images/welcomeLogo.png"),
                   width: 250),
-              const SizedBox(height: 20),
+              Gap(size: 20),
               ElevatedButton(
                 // outline button
                 style: ElevatedButton.styleFrom(
@@ -57,7 +58,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+              Gap(size: 20),
               ElevatedButton(
                 // outline button
                 style: ElevatedButton.styleFrom(
@@ -83,7 +84,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+              Gap(size: 20),
               Row(
                 children: [
                   Expanded(
@@ -104,7 +105,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
+              Gap(size: 20),
               ElevatedButton(
                 // outline button
                 style: ElevatedButton.styleFrom(

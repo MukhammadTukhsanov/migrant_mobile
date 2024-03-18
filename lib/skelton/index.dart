@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:migrant/components/gap.dart';
 
 class Skelton extends StatelessWidget {
   // Skelton width
@@ -53,7 +54,7 @@ class TripCardSkelton extends StatelessWidget {
         color: Colors.black.withOpacity(0.04),
         borderRadius: BorderRadius.circular(16),
       ),
-      child: const Column(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
@@ -63,35 +64,29 @@ class TripCardSkelton extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Skelton(
+                      const Skelton(
                         width: 50,
                         height: 10,
                         radius: 4,
                       ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Skelton(
+                      Gap(size: 20),
+                      const Skelton(
                         width: 130,
                         height: 10,
                         radius: 4,
                       ),
                     ],
                   ),
-                  SizedBox(
-                    height: 20,
-                  ),
+                  Gap(size: 20),
                   Row(
                     children: [
-                      Skelton(
+                      const Skelton(
                         width: 50,
                         height: 10,
                         radius: 4,
                       ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Skelton(
+                      Gap(size: 20),
+                      const Skelton(
                         width: 100,
                         height: 10,
                         radius: 4,
@@ -100,41 +95,35 @@ class TripCardSkelton extends StatelessWidget {
                   )
                 ],
               ),
-              Spacer(),
-              Skelton(
+              const Spacer(),
+              const Skelton(
                 width: 110,
                 height: 15,
                 radius: 6,
               )
             ],
           ),
-          SizedBox(
-            height: 20,
-          ),
+          Gap(size: 20),
           Row(
             children: [
               Row(
                 children: [
-                  Skelton(
+                  const Skelton(
                     width: 50,
                     height: 50,
                     radius: 25,
                   ),
-                  SizedBox(
-                    width: 20,
-                  ),
+                  Gap(size: 20),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Skelton(
+                      const Skelton(
                         width: 150,
                         height: 10,
                         radius: 4,
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Skelton(
+                      Gap(size: 10),
+                      const Skelton(
                         width: 50,
                         height: 10,
                         radius: 4,
@@ -143,8 +132,8 @@ class TripCardSkelton extends StatelessWidget {
                   )
                 ],
               ),
-              Spacer(),
-              Skelton(
+              const Spacer(),
+              const Skelton(
                 width: 50,
                 height: 40,
                 radius: 6,

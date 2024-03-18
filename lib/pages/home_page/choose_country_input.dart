@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:migrant/components/gap.dart';
 import 'package:migrant/providers/choose_country_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -30,9 +31,7 @@ class _ChooseCountryInputState extends State<ChooseCountryInput> {
               Icons.location_on,
               color: Colors.blueGrey,
             ),
-            const SizedBox(
-              width: 8,
-            ),
+            Gap(size: 8),
             Text(
               widget.type == "start" &&
                       context

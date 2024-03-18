@@ -7,7 +7,7 @@ import 'package:migrant/pages/registration_/index.dart';
 import 'package:migrant/components/buttons.dart' as buttons;
 import 'package:migrant/components/devider.dart';
 import 'package:migrant/components/gap.dart';
-import 'package:migrant/components/outlined_input.dart';
+import 'package:migrant/components/input_outlined.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -89,9 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                         },
                       ),
                     ),
-                    const SizedBox(
-                      height: 8,
-                    ),
+                    Gap(size: 8),
                     Align(
                       alignment: Alignment.centerRight,
                       child: buttons.TextButton(
@@ -105,7 +103,11 @@ class _LoginPageState extends State<LoginPage> {
                           }),
                     ),
                     Gap(size: 20),
-                    buttons.FillButton(text: "Login", onPress: () {}),
+                    buttons.FillButton(
+                        text: "Login",
+                        onPress: () {
+                          Navigator.pushNamed(context, '/navigation');
+                        }),
                     Gap(size: 20),
                     // or login with text with devider
                     MyDevider(text: "Or Continue With"),
@@ -152,18 +154,16 @@ class _LoginPageState extends State<LoginPage> {
                                     Border.all(color: Colors.blueGrey.shade300),
                                 borderRadius: BorderRadius.circular(8),
                               ),
-                              child: const Row(
+                              child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Image(
+                                    const Image(
                                       image: AssetImage(
                                           'assets/images/google.png'),
                                       width: 20,
                                     ),
-                                    SizedBox(
-                                      width: 16,
-                                    ),
-                                    Text(
+                                    Gap(size: 16),
+                                    const Text(
                                       'Google',
                                       style: TextStyle(color: Colors.blueGrey),
                                     ),

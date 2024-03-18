@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:intl/intl.dart';
 import 'package:migrant/chat/message.dart';
+import 'package:migrant/components/gap.dart';
 
 // ignore: must_be_immutable
 class ChatRoom extends StatefulWidget {
@@ -78,9 +79,7 @@ class _ChatRoomState extends State<ChatRoom> {
               children: [
                 Icon(Icons.directions_car_filled_sharp,
                     color: Colors.blueGrey.shade400, size: 16),
-                const SizedBox(
-                  width: 4,
-                ),
+                Gap(size: 4),
                 Text(
                   "Driver",
                   style: TextStyle(
@@ -183,9 +182,7 @@ class _ChatRoomState extends State<ChatRoom> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  width: 16,
-                ),
+                Gap(size: 16),
                 // icon button for send message
                 IconButton(
                     onPressed: () {

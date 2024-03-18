@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:migrant/components/gap.dart';
 import 'package:migrant/profile_page/advertisement/choose_country_and_time.dart';
 
 class AddAdvertisement extends StatefulWidget {
@@ -38,17 +39,11 @@ class _AddAdvertisementState extends State<AddAdvertisement> {
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  const SizedBox(
-                    height: 40,
-                  ),
+                  Gap(size: 40),
                   const ChooseCountryAndTime(),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  Gap(size: 20),
                   const ChooseCountryAndTime(),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  Gap(size: 20),
                   Row(
                     children: [
                       Expanded(
@@ -93,9 +88,7 @@ class _AddAdvertisementState extends State<AddAdvertisement> {
                           ],
                         ),
                       ),
-                      const SizedBox(
-                        width: 10,
-                      ),
+                      Gap(size: 10),
                       Column(
                         children: [
                           Align(
@@ -144,9 +137,7 @@ class _AddAdvertisementState extends State<AddAdvertisement> {
                     ],
                   ),
 
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  Gap(size: 20),
                   // free seats
                   Align(
                     alignment: Alignment.topLeft,
@@ -182,9 +173,7 @@ class _AddAdvertisementState extends State<AddAdvertisement> {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  Gap(size: 20),
                   // description
                   Align(
                     alignment: Alignment.topLeft,
@@ -215,9 +204,7 @@ class _AddAdvertisementState extends State<AddAdvertisement> {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  Gap(size: 20),
                   // add button
                   ElevatedButton(
                     onPressed: () {},

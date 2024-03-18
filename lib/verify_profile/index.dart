@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:migrant/components/buttons.dart';
+import 'package:migrant/components/gap.dart';
 
 class VerifiyProfile extends StatefulWidget {
   const VerifiyProfile({super.key});
@@ -32,9 +33,7 @@ class _VerifiyProfileState extends State<VerifiyProfile> {
                     color: Colors.blueGrey[700],
                   ),
                 ),
-                const SizedBox(
-                  height: 16,
-                ),
+                Gap(size: 16),
                 Text(
                   "Code in sent to +49 123 456 789",
                   style: TextStyle(
@@ -44,9 +43,7 @@ class _VerifiyProfileState extends State<VerifiyProfile> {
                   ),
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(
-                  height: 16,
-                ),
+                Gap(size: 16),
                 // Timer
 
                 Text(
@@ -78,6 +75,33 @@ class _VerifiyProfileState extends State<VerifiyProfile> {
                             },
                             decoration: const InputDecoration(
                                 hintText: "-", border: InputBorder.none),
+                            style: Theme.of(context).textTheme.titleLarge,
+                            keyboardType: TextInputType.number,
+                            textAlign: TextAlign.center,
+                            inputFormatters: [
+                              LengthLimitingTextInputFormatter(1),
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: 55,
+                        height: 55,
+                        decoration: BoxDecoration(
+                          color: Colors.blueGrey[50],
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Center(
+                          child: TextFormField(
+                            onChanged: (value) {
+                              if (value.length == 1) {
+                                FocusScope.of(context).nextFocus();
+                              }
+                            },
+                            decoration: const InputDecoration(
+                                hintText: "-", border: InputBorder.none),
+                            // ignore: deprecated_member_use
                             style: Theme.of(context).textTheme.headline6,
                             keyboardType: TextInputType.number,
                             textAlign: TextAlign.center,
@@ -104,6 +128,7 @@ class _VerifiyProfileState extends State<VerifiyProfile> {
                             },
                             decoration: const InputDecoration(
                                 hintText: "-", border: InputBorder.none),
+                            // ignore: deprecated_member_use
                             style: Theme.of(context).textTheme.headline6,
                             keyboardType: TextInputType.number,
                             textAlign: TextAlign.center,
@@ -130,32 +155,7 @@ class _VerifiyProfileState extends State<VerifiyProfile> {
                             },
                             decoration: const InputDecoration(
                                 hintText: "-", border: InputBorder.none),
-                            style: Theme.of(context).textTheme.headline6,
-                            keyboardType: TextInputType.number,
-                            textAlign: TextAlign.center,
-                            inputFormatters: [
-                              LengthLimitingTextInputFormatter(1),
-                              FilteringTextInputFormatter.digitsOnly
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: 55,
-                        height: 55,
-                        decoration: BoxDecoration(
-                          color: Colors.blueGrey[50],
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Center(
-                          child: TextFormField(
-                            onChanged: (value) {
-                              if (value.length == 1) {
-                                FocusScope.of(context).nextFocus();
-                              }
-                            },
-                            decoration: const InputDecoration(
-                                hintText: "-", border: InputBorder.none),
+                            // ignore: deprecated_member_use
                             style: Theme.of(context).textTheme.headline6,
                             keyboardType: TextInputType.number,
                             textAlign: TextAlign.center,
@@ -169,9 +169,7 @@ class _VerifiyProfileState extends State<VerifiyProfile> {
                     ],
                   ),
                 ),
-                const SizedBox(
-                  height: 16,
-                ),
+                Gap(size: 16),
                 Padding(
                   padding: const EdgeInsets.all(32.0),
                   child: Text.rich(
@@ -196,9 +194,7 @@ class _VerifiyProfileState extends State<VerifiyProfile> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 16,
-                ),
+                Gap(size: 16),
                 FillButton(text: "Verify", onPress: () {})
               ],
             ),

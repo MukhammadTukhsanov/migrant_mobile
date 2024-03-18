@@ -1,7 +1,7 @@
 import 'package:csc_picker/csc_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:migrant/providers/choose_country_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:migrant/components/buttons.dart';
+import 'package:migrant/components/gap.dart';
 
 // ignore: must_be_immutable
 class ChooseCountry extends StatefulWidget {
@@ -82,44 +82,28 @@ class _ChooseCountryState extends State<ChooseCountry> {
                   }
                 },
               ),
-              const SizedBox(
-                height: 20,
-              ),
+              Gap(size: 20),
               // button on tap go to back with data
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  fixedSize: Size(MediaQuery.of(context).size.width - 32, 50),
-                  backgroundColor: Colors.blueGrey,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    side: const BorderSide(color: Colors.white, width: 1),
-                  ),
-                ),
-                onPressed: () {
-                  widget.type == "start"
-                      ? Provider.of<ChooseCountryProvider>(context,
-                              listen: false)
-                          .setStartingCountry(
-                              "$countryValue $stateValue $cityValue")
-                      : widget.type == "end"
-                          ? Provider.of<ChooseCountryProvider>(context,
-                                  listen: false)
-                              .setEndingCountry(
-                                  "$countryValue $stateValue $cityValue")
-                          : null;
-                  Navigator.pop(context);
-                  //   countryValue,
-                  //   stateValue,
-                  //   cityValue,
-                  // ]);
-                },
-                child: const Text("Save",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                        letterSpacing: 1.2)),
-              ),
+              FillButton(
+                  text: "Save",
+                  onPress: () {
+                    // widget.type == "start"
+                    //     ? Provider.of<ChooseCountryProvider>(context,
+                    //             listen: false)
+                    //         .setStartingCountry(
+                    //             "$countryValue $stateValue $cityValue")
+                    //     : widget.type == "end"
+                    //         ? Provider.of<ChooseCountryProvider>(context,
+                    //                 listen: false)
+                    //             .setEndingCountry(
+                    //                 "$countryValue $stateValue $cityValue")
+                    //         : null;
+                    Navigator.pop(context);
+                    //   countryValue,
+                    //   stateValue,
+                    //   cityValue,
+                    // ]);
+                  })
             ],
           ),
         ));
