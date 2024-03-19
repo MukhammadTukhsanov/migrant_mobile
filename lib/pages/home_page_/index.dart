@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:migrant/pages/home_page/home_page_header_card/index.dart';
-import 'package:migrant/pages/home_page/trip_card/trip_card_item.dart';
-import 'package:migrant/pages/home_page/trip_card/trip_card_item_model.dart';
+import 'package:migrant/components/trip_card/trip_card_item.dart';
+import 'package:migrant/components/trip_card/trip_card_item_model.dart';
+import 'package:migrant/pages/home_page_/home_page_header_card/index.dart';
 import 'package:migrant/skelton/index.dart';
 
-class HomePageSliver extends StatefulWidget {
-  const HomePageSliver({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<HomePageSliver> createState() => _HomePageSliverState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageSliverState extends State<HomePageSliver> {
+class _HomePageState extends State<HomePage> {
   bool _isLoading = false;
 
   @override
@@ -93,35 +93,6 @@ class _HomePageSliverState extends State<HomePageSliver> {
                 ),
               ),
       ),
-
-      // SliverList(
-      //   delegate: _isLoading
-      //       ? SliverChildListDelegate(List.generate(
-      //           5,
-      //           (index) => const Padding(
-      //             // ignore: unnecessary_const
-      //             padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
-      //             child: TripCardSkelton(),
-      //           ),
-      //         ))
-      //       : SliverChildListDelegate(List.generate(
-      //           20,
-      //           (index) => Padding(
-      //             padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
-      //             child: TripCard(
-      //               card: TripCardItemModel(
-      //                 price: "149 000",
-      //                 startDate: "22 : 30",
-      //                 endDate: "06 : 30",
-      //                 countOfFreeSeats: "4",
-      //                 endLocation: "Moscow",
-      //                 startLocation: "Saint Petersburg",
-      //                 user: 'Alisher Haidarov',
-      //               ),
-      //             ),
-      //           ),
-      //         )),
-      // ),
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:migrant/components/gap.dart';
-import 'package:migrant/pages/home_page/choose_country_input.dart';
+import 'package:migrant/components/choose_country_input.dart';
 
 class ChooseCountryAndTime extends StatefulWidget {
   const ChooseCountryAndTime({super.key});

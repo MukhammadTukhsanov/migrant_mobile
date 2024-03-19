@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:migrant/chat/index.dart';
-import 'package:migrant/pages/home_page/index.dart';
+import 'package:migrant/pages/home_page_/index.dart';
 import 'package:migrant/profile_page/index.dart';
 
 // ignore: non_constant_identifier_names

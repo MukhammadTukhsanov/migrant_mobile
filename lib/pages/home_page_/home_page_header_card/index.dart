@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:migrant/components/date_picker.dart';
 import 'package:migrant/components/gap.dart';
 import 'package:migrant/pages/choose_country/index.dart';
-import 'package:migrant/pages/home_page/choose_country_input.dart';
-import 'package:migrant/pages/home_page/seat_picker/index.dart';
+import 'package:migrant/components/choose_country_input.dart';
+import 'package:migrant/pages/home_page_/home_page_header_card/seat_picker/index.dart';
 
 //ignore: must_be_immutable
 class HomePageHeader extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:migrant/components/gap.dart';
-import 'package:migrant/pages/home_page/trip_card/trip_card_item_model.dart';
+import 'package:migrant/components/trip_card/trip_card_item_model.dart';
 
 // ignore: must_be_immutable
 class TripCard extends StatelessWidget {
