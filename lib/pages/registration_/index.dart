@@ -26,8 +26,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
+  final _phoneNumberController = TextEditingController();
   bool _passwordObscureText = true;
   bool _confirmPasswordObscureText = true;
+  bool _isDriver = false;
+  bool _isPassenger = false;
 
   checkValidateToEmpty(String? value) {
     if (value!.isEmpty) {
@@ -141,6 +144,107 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                   color: Colors.blueGrey.shade400,
                                 ),
                               )),
+                          // phone number
+                          Gap(size: 20),
+                          InputOutlined(
+                              keyboardType: TextInputType.phone,
+                              controller: _phoneNumberController,
+                              labelText: 'Phone Number',
+                              prefixIcon: Icons.phone,
+                              suffixIcon: IconButton(
+                                onPressed: () => _emailController.clear(),
+                                icon: Icon(
+                                  Icons.clear,
+                                  size: 20,
+                                  color: Colors.blueGrey.shade400,
+                                ),
+                              )),
+
+                          Gap(size: 20),
+                          // checkbox driver or passenger
+                          Row(
+                            children: [
+                              Expanded(
+                                  child: Row(
+                                children: [
+                                  SizedBox(
+                                    width: 20,
+                                    height: 20,
+                                    child: Checkbox(
+                                      activeColor: Colors.blueGrey,
+                                      side: const BorderSide(
+                                          color: Colors.blueGrey, width: 1),
+                                      value: _isDriver,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          _isDriver = true;
+                                          _isPassenger = false;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                  Gap(size: 8),
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.directions_car,
+                                        color: Colors.blueGrey,
+                                      ),
+                                      Gap(size: 4),
+                                      const Text(
+                                        'Driver',
+                                        style: TextStyle(
+                                          color: Colors.blueGrey,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              )),
+                              Expanded(
+                                child: Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 20,
+                                      height: 20,
+                                      child: Checkbox(
+                                        activeColor: Colors.blueGrey,
+                                        side: const BorderSide(
+                                            color: Colors.blueGrey, width: 1),
+                                        value: _isPassenger,
+                                        onChanged: (value) {
+                                          setState(() {
+                                            _isPassenger = true;
+                                            _isDriver = false;
+                                          });
+                                        },
+                                      ),
+                                    ),
+                                    Gap(size: 8),
+                                    Row(
+                                      children: [
+                                        const Icon(
+                                          Icons.hail_sharp,
+                                          color: Colors.blueGrey,
+                                        ),
+                                        Gap(size: 4),
+                                        const Text(
+                                          'Passenger',
+                                          style: TextStyle(
+                                            color: Colors.blueGrey,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                           Gap(size: 20),
                           InputOutlined(
                               keyboardType: TextInputType.visiblePassword,

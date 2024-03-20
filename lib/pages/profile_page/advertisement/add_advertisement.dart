@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:migrant/components/gap.dart';
-import 'package:migrant/profile_page/advertisement/choose_country_and_time.dart';
+import 'package:migrant/pages/profile_page/advertisement/choose_country_and_time.dart';
 
 class AddAdvertisement extends StatefulWidget {
   const AddAdvertisement({super.key});

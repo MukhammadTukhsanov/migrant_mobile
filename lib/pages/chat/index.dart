@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:migrant/chat/chat.dart';
-import 'package:migrant/chat/chat_room.dart';
+import 'package:migrant/pages/chat/chat.dart';
+import 'package:migrant/pages/chat/chat_room.dart';
 
 class ChatsPage extends StatefulWidget {
   const ChatsPage({super.key});

@@ -87,17 +87,6 @@ class _ChooseCountryState extends State<ChooseCountry> {
               FillButton(
                   text: "Save",
                   onPress: () {
-                    // widget.type == "start"
-                    //     ? Provider.of<ChooseCountryProvider>(context,
-                    //             listen: false)
-                    //         .setStartingCountry(
-                    //             "$countryValue $stateValue $cityValue")
-                    //     : widget.type == "end"
-                    //         ? Provider.of<ChooseCountryProvider>(context,
-                    //                 listen: false)
-                    //             .setEndingCountry(
-                    //                 "$countryValue $stateValue $cityValue")
-                    //         : null;
                     Navigator.pop(context);
                     //   countryValue,
                     //   stateValue,

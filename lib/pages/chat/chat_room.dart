@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:intl/intl.dart';
-import 'package:migrant/chat/message.dart';
+import 'package:migrant/pages/chat/message.dart';
 import 'package:migrant/components/gap.dart';
 
 // ignore: must_be_immutable

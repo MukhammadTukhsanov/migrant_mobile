@@ -2,11 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:migrant/components/alert.dart';
 import 'package:migrant/components/gap.dart';
 import 'package:migrant/pages/login_/index.dart';
-import 'package:migrant/profile_page/advertisement/add_advertisement.dart';
-import 'package:migrant/profile_page/advertisement/my_advertisement.dart';
-import 'package:migrant/verify_profile/index.dart';
+import 'package:migrant/pages/profile_page/advertisement/add_advertisement.dart';
+import 'package:migrant/pages/profile_page/advertisement/my_advertisement.dart';
+import 'package:migrant/pages/choose_country/verify_profile/index.dart';
 
 //ignore: must_be_immutable
 class LogedProfile extends StatefulWidget {
@@ -505,12 +506,18 @@ class _LogedProfileState extends State<LogedProfile> {
                             ),
                             ListTile(
                               onTap: () {
+                                showDialog<String>(
+                                    context: context,
+                                    builder: (BuildContext context) => Alert(
+                                        icon: Icons.logout,
+                                        title:
+                                            'Are you sure you want to logout?',
+                                        accept: 'Logout',
+                                        acceptFunction: () {
+                                          Navigator.pushNamed(
+                                              context, '/login');
+                                        }));
                                 FirebaseAuth.instance.signOut();
-                                Navigator.push(
-                                    context,
-                                    CupertinoPageRoute(
-                                        builder: (context) =>
-                                            const LoginPage()));
                               },
                               leading: const Icon(
                                 Icons.logout,

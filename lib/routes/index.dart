@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:migrant/auth/change_pasword/index.dart';
+import 'package:migrant/pages/change_pasword_/index.dart';
 import 'package:migrant/pages/forget_password_/index.dart';
 import 'package:migrant/pages/login_/index.dart';
 import 'package:migrant/pages/registration_/index.dart';
 import 'package:migrant/navbar/index.dart';
 import 'package:migrant/pages/choose_country/index.dart';
-import 'package:migrant/pages/trip_info/index.dart';
-import 'package:migrant/profile_page/profile_settings_page.dart';
-import 'package:migrant/terms_and_conditions/index.dart';
-import 'package:migrant/welcom/index.dart';
+import 'package:migrant/pages/trip_info_/index.dart';
+import 'package:migrant/pages/profile_page/profile_settings_page.dart';
+import 'package:migrant/pages/terms_and_conditions/index.dart';
+import 'package:migrant/pages/welcom/index.dart';
 
 class MigrantApp extends StatelessWidget {
   const MigrantApp({super.key});

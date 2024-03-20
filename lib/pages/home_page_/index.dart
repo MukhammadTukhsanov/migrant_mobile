@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:migrant/components/trip_card/trip_card_item.dart';
 import 'package:migrant/components/trip_card/trip_card_item_model.dart';
 import 'package:migrant/pages/home_page_/home_page_header_card/index.dart';
-import 'package:migrant/skelton/index.dart';
+import 'package:migrant/pages/skelton/index.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
