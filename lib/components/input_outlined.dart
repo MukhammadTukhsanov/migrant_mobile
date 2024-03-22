@@ -15,6 +15,10 @@ class InputOutlined extends StatelessWidget {
   // TextField validator
   // TextField obsecure text
   bool? obscureText;
+  // TextField validator
+  String? Function(String?)? validator;
+  // textField validator not required
+
   // TextField key
   InputOutlined({
     super.key,
@@ -24,11 +28,13 @@ class InputOutlined extends StatelessWidget {
     this.prefixIcon,
     this.keyboardType,
     this.obscureText,
+    this.validator,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: validator,
       obscureText: obscureText ?? false,
       keyboardType: keyboardType,
       controller: controller,

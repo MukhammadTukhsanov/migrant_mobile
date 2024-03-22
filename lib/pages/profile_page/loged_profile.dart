@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:migrant/components/alert.dart';
 import 'package:migrant/components/gap.dart';
-import 'package:migrant/pages/login_/index.dart';
 import 'package:migrant/pages/profile_page/advertisement/add_advertisement.dart';
 import 'package:migrant/pages/profile_page/advertisement/my_advertisement.dart';
 import 'package:migrant/pages/choose_country/verify_profile/index.dart';
@@ -132,7 +131,7 @@ class _LogedProfileState extends State<LogedProfile> {
                                                     MainAxisAlignment.center,
                                                 children: [
                                                   Text(
-                                                    widget.userName,
+                                                    '${widget.userName} ${widget.userSurname}',
                                                     style: const TextStyle(
                                                       fontSize: 20,
                                                       fontWeight:

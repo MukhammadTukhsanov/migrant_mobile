@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:migrant/components/alert.dart';
-import 'package:migrant/components/buttons.dart' as buttons;
-import 'package:migrant/components/gap.dart';
 
 class ProfileSettings extends StatefulWidget {
   const ProfileSettings({super.key});

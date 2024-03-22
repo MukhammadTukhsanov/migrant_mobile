@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:migrant/components/buttons.dart';
 import 'package:migrant/components/gap.dart';
 import 'package:migrant/pages/profile_page/loged_profile.dart';
+import 'package:migrant/providers/user_reg_provider.dart';
+import 'package:provider/provider.dart';
 
 class ProfilePage extends StatefulWidget {
-  final bool isLoged = true;
+  // final bool isLoged = context;
   const ProfilePage({super.key});
 
   @override
@@ -14,15 +16,16 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    return widget.isLoged
+    bool isLoged = context.watch<UserRegProvider>().isLogged;
+    return isLoged
         ? LogedProfile(
-            userName: "Theresea",
-            userSurname: "Schröder",
-            isVerified: false,
-            isPassanger: false,
+            userName: context.watch<UserRegProvider>().firstName,
+            userSurname: context.watch<UserRegProvider>().lastName,
+            isVerified: true,
+            isPassanger: context.watch<UserRegProvider>().isPassanger,
             userImage: "https://mighty.tools/mockmind-api/content/human/6.jpg",
-            userPhone: "+49 123 456 789",
-            userEmail: "theresa89@domain.ltd",
+            userPhone: context.watch<UserRegProvider>().phoneNumber,
+            userEmail: context.watch<UserRegProvider>().email,
             userLocation: "Berlin, Germany",
             userRating: 4.5,
             userAdvertisements: 12,
@@ -54,9 +57,17 @@ class _ProfilePageState extends State<ProfilePage> {
                             fontWeight: FontWeight.w500),
                       ),
                       Gap(size: 20),
-                      FillButton(onPress: () {}, text: "Log in"),
+                      FillButton(
+                          onPress: () {
+                            Navigator.pushNamed(context, '/login');
+                          },
+                          text: "Log in"),
                       Gap(size: 8),
-                      FillButton(onPress: () {}, text: "Register"),
+                      FillButton(
+                          onPress: () {
+                            Navigator.pushNamed(context, '/register');
+                          },
+                          text: "Register"),
                     ],
                   ),
                 ),

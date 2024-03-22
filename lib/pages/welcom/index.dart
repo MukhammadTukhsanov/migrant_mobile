@@ -5,6 +5,8 @@ import 'package:migrant/components/gap.dart';
 import 'package:migrant/pages/login_/index.dart';
 import 'package:migrant/pages/registration_/index.dart';
 import 'package:migrant/navbar/index.dart';
+import 'package:migrant/providers/user_reg_provider.dart';
+import 'package:provider/provider.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
@@ -117,6 +119,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   ),
                 ),
                 onPressed: () {
+                  context.read<UserRegProvider>().skipLogin();
                   Navigator.push(
                       context,
                       CupertinoPageRoute(

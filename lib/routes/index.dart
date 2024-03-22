@@ -20,7 +20,7 @@ class MigrantApp extends StatelessWidget {
         '/': (context) => const WelcomePage(),
         '/login': (context) => const LoginPage(),
         '/forget-password': (context) => const ForgetPassword(),
-        '/registration': (context) => const RegistrationPage(),
+        '/register': (context) => const RegistrationPage(),
         '/navigation': (context) => const Navigation(),
         '/trip-info': (context) => const TripInfo(),
         '/choose-country': (context) => ChooseCountry(),

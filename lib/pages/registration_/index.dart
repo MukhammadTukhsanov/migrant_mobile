@@ -8,6 +8,8 @@ import 'package:migrant/components/gap.dart';
 import 'package:migrant/components/input_outlined.dart';
 import 'package:migrant/pages/login_/index.dart';
 import 'package:migrant/auth/auth_components/header.dart';
+import 'package:migrant/providers/user_reg_provider.dart';
+import 'package:provider/provider.dart';
 
 class RegistrationPage extends StatefulWidget {
   const RegistrationPage({super.key});
@@ -31,33 +33,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
   bool _confirmPasswordObscureText = true;
   bool _isDriver = false;
   bool _isPassenger = false;
-
-  checkValidateToEmpty(String? value) {
-    if (value!.isEmpty) {
-      return 'Please enter your first name';
-    }
-  }
-
-  checkValidateToEmail(String? value) {
-    if (value!.isEmpty) {
-      return 'Please enter an email address';
-    } else if (!RegExp(r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$')
-        .hasMatch(value)) {
-      return 'Please enter a valid email address';
-    }
-    return null; // Return null if the input is valid
-  }
-
-  checkValidateToPassword(String? value) {
-    if (value!.isEmpty) {
-      return 'Please enter a password';
-    } else if (value.length < 6) {
-      return 'Password must be at least 6 characters long';
-    } else if (_passwordController.text != _confirmPasswordController.text) {
-      return 'Passwords do not match';
-    }
-    return null; // Return null if the input is valid
-  }
+  bool unchecked = false;
 
   // form key
   final _formKey = GlobalKey<FormState>();
@@ -67,6 +43,33 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
   @override
   Widget build(BuildContext context) {
+    checkValidateToEmpty(String? value) {
+      if (value!.isEmpty) {
+        return 'Please enter your first name';
+      }
+    }
+
+    checkValidateToEmail(String? value) {
+      if (value!.isEmpty) {
+        return 'Please enter an email address';
+      } else if (!RegExp(r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$')
+          .hasMatch(value)) {
+        return 'Please enter a valid email address';
+      }
+      return null; // Return null if the input is valid
+    }
+
+    checkValidateToPassword(String? value) {
+      if (value!.isEmpty) {
+        return 'Please enter a password';
+      } else if (value.length < 6) {
+        return 'Password must be at least 6 characters long';
+      } else if (_passwordController.text != _confirmPasswordController.text) {
+        return 'Passwords do not match';
+      }
+      return null; // Return null if the input is valid
+    }
+
     // registration page
     return Scaffold(
         backgroundColor: Colors.white,
@@ -103,8 +106,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           Gap(size: 40),
                           // map inputs from _registration_page_inputs
                           InputOutlined(
+                              validator: checkValidateToEmpty,
                               keyboardType: TextInputType.emailAddress,
-                              controller: _emailController,
+                              controller: _firstnameController,
                               labelText: 'First Name',
                               prefixIcon: Icons.person,
                               suffixIcon: IconButton(
@@ -117,8 +121,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               )),
                           Gap(size: 20),
                           InputOutlined(
+                              validator: checkValidateToEmpty,
                               keyboardType: TextInputType.emailAddress,
-                              controller: _emailController,
+                              controller: _lastnameController,
                               labelText: 'Last Name',
                               prefixIcon: Icons.person,
                               suffixIcon: IconButton(
@@ -132,6 +137,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
                           Gap(size: 20),
                           InputOutlined(
+                              validator: checkValidateToEmail,
                               keyboardType: TextInputType.emailAddress,
                               controller: _emailController,
                               labelText: 'Email',
@@ -147,6 +153,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           // phone number
                           Gap(size: 20),
                           InputOutlined(
+                              validator: checkValidateToEmpty,
                               keyboardType: TextInputType.phone,
                               controller: _phoneNumberController,
                               labelText: 'Phone Number',
@@ -162,91 +169,113 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
                           Gap(size: 20),
                           // checkbox driver or passenger
-                          Row(
+                          Column(
                             children: [
-                              Expanded(
-                                  child: Row(
+                              Row(
                                 children: [
-                                  SizedBox(
-                                    width: 20,
-                                    height: 20,
-                                    child: Checkbox(
-                                      activeColor: Colors.blueGrey,
-                                      side: const BorderSide(
-                                          color: Colors.blueGrey, width: 1),
-                                      value: _isDriver,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          _isDriver = true;
-                                          _isPassenger = false;
-                                        });
-                                      },
-                                    ),
-                                  ),
-                                  Gap(size: 8),
-                                  Row(
+                                  Expanded(
+                                      child: Row(
                                     children: [
-                                      const Icon(
-                                        Icons.directions_car,
-                                        color: Colors.blueGrey,
-                                      ),
-                                      Gap(size: 4),
-                                      const Text(
-                                        'Driver',
-                                        style: TextStyle(
-                                          color: Colors.blueGrey,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400,
+                                      SizedBox(
+                                        width: 20,
+                                        height: 20,
+                                        child: Checkbox(
+                                          activeColor: Colors.blueGrey,
+                                          side: const BorderSide(
+                                              color: Colors.blueGrey, width: 1),
+                                          value: _isDriver,
+                                          onChanged: (value) {
+                                            setState(() {
+                                              _isDriver = true;
+                                              _isPassenger = false;
+                                            });
+                                          },
                                         ),
                                       ),
-                                    ],
-                                  )
-                                ],
-                              )),
-                              Expanded(
-                                child: Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 20,
-                                      height: 20,
-                                      child: Checkbox(
-                                        activeColor: Colors.blueGrey,
-                                        side: const BorderSide(
-                                            color: Colors.blueGrey, width: 1),
-                                        value: _isPassenger,
-                                        onChanged: (value) {
-                                          setState(() {
-                                            _isPassenger = true;
-                                            _isDriver = false;
-                                          });
-                                        },
-                                      ),
-                                    ),
-                                    Gap(size: 8),
-                                    Row(
-                                      children: [
-                                        const Icon(
-                                          Icons.hail_sharp,
-                                          color: Colors.blueGrey,
-                                        ),
-                                        Gap(size: 4),
-                                        const Text(
-                                          'Passenger',
-                                          style: TextStyle(
+                                      Gap(size: 8),
+                                      Row(
+                                        children: [
+                                          const Icon(
+                                            Icons.directions_car,
                                             color: Colors.blueGrey,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w400,
+                                          ),
+                                          Gap(size: 4),
+                                          const Text(
+                                            'Driver',
+                                            style: TextStyle(
+                                              color: Colors.blueGrey,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                    ],
+                                  )),
+                                  Expanded(
+                                    child: Row(
+                                      children: [
+                                        SizedBox(
+                                          width: 20,
+                                          height: 20,
+                                          child: Checkbox(
+                                            activeColor: Colors.blueGrey,
+                                            side: const BorderSide(
+                                                color: Colors.blueGrey,
+                                                width: 1),
+                                            value: _isPassenger,
+                                            onChanged: (value) {
+                                              setState(() {
+                                                _isPassenger = true;
+                                                _isDriver = false;
+                                              });
+                                            },
                                           ),
                                         ),
+                                        Gap(size: 8),
+                                        Row(
+                                          children: [
+                                            const Icon(
+                                              Icons.hail_sharp,
+                                              color: Colors.blueGrey,
+                                            ),
+                                            Gap(size: 4),
+                                            const Text(
+                                              'Passenger',
+                                              style: TextStyle(
+                                                color: Colors.blueGrey,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
+                                          ],
+                                        )
                                       ],
-                                    )
-                                  ],
-                                ),
+                                    ),
+                                  ),
+                                ],
                               ),
+                              if (unchecked)
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Padding(
+                                    padding:
+                                        const EdgeInsets.only(left: 16, top: 8),
+                                    child: Text(
+                                      "Please choose one",
+                                      style: TextStyle(
+                                        color: Colors.red.shade900,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                  ),
+                                ),
                             ],
                           ),
                           Gap(size: 20),
                           InputOutlined(
+                              validator: checkValidateToPassword,
                               keyboardType: TextInputType.visiblePassword,
                               controller: _passwordController,
                               labelText: 'Password',
@@ -269,6 +298,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               )),
                           Gap(size: 20),
                           InputOutlined(
+                              validator: checkValidateToPassword,
                               keyboardType: TextInputType.visiblePassword,
                               controller: _confirmPasswordController,
                               labelText: 'Confirm Password',
@@ -350,7 +380,31 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           // sign up button
                           button.FillButton(
                             text: "Create Account",
-                            onPress: () {},
+                            onPress: () {
+                              if (_isDriver == false && _isPassenger == false) {
+                                setState(() {
+                                  unchecked = true;
+                                });
+                              } else {
+                                setState(() {
+                                  unchecked = false;
+                                });
+                              }
+                              if (_formKey.currentState!.validate() &&
+                                  !unchecked) {
+                                context.read<UserRegProvider>().registerUser(
+                                      email: _emailController.text,
+                                      password: _passwordController.text,
+                                      isPassanger: _isPassenger,
+                                      confirmPassword:
+                                          _confirmPasswordController.text,
+                                      firstName: _firstnameController.text,
+                                      lastName: _lastnameController.text,
+                                      phoneNumber: _phoneNumberController.text,
+                                    );
+                                Navigator.pushNamed(context, '/navigation');
+                              }
+                            },
                           ),
                         ],
                       ),

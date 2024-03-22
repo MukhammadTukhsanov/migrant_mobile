@@ -8,6 +8,8 @@ import 'package:migrant/components/buttons.dart' as buttons;
 import 'package:migrant/components/devider.dart';
 import 'package:migrant/components/gap.dart';
 import 'package:migrant/components/input_outlined.dart';
+import 'package:migrant/providers/user_reg_provider.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -19,11 +21,17 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   //controller for email input
-  final _emailController = TextEditingController();
+  final _emailController = TextEditingController(
+    text: 'passanger@mail.com',
+  );
   //controller for password input
-  final _passwordController = TextEditingController();
+  final _passwordController = TextEditingController(
+    text: '123456',
+  );
   //password visibility
   bool _obscureText = true;
+
+  bool isErrEmailOrPassword = false;
 
   // dispose controllers
   @override
@@ -33,8 +41,56 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
+  errEmailOrPassword() {
+    setState(() {
+      isErrEmailOrPassword = true;
+    });
+    // delay
+    Future.delayed(const Duration(seconds: 3), () {
+      setState(() {
+        isErrEmailOrPassword = false;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    final formKey = GlobalKey<FormState>();
+
+    checkValidateToEmail(String? value) {
+      if (value!.isEmpty) {
+        return 'Please enter an email address';
+      } else if (!RegExp(r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$')
+          .hasMatch(value)) {
+        return 'Please enter a valid email address';
+      }
+      return null; // Return null if the input is valid
+    }
+
+    checkValidateToPassword(String? value) {
+      if (value!.isEmpty) {
+        return 'Please enter a password';
+      } else if (value.length < 6) {
+        return 'Password must be at least 6 characters long';
+      }
+      return null; // Return null if the input is valid
+    }
+
+    login() {
+      if (formKey.currentState!.validate()) {
+        if (_emailController.text == "passanger@mail.com" &&
+            _passwordController.text == "123456") {
+          context.read<UserRegProvider>().login(
+              email: _emailController.text,
+              password: _passwordController.text,
+              isPassanger: true);
+          Navigator.pushNamed(context, '/navigation');
+        } else {
+          errEmailOrPassword();
+        }
+      }
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       // appBar: AppBar(
@@ -45,107 +101,111 @@ class _LoginPageState extends State<LoginPage> {
       // login page
       body: Column(
         children: [
+          // error message
           Expanded(
               child: Center(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Text("Sign In",
-                        style: TextStyle(
-                            fontSize: 30,
-                            color: Colors.blueGrey.shade700,
-                            fontWeight: FontWeight.bold)),
-                    Text("Enter valid email and password to continue",
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.blueGrey.shade500,
-                            fontWeight: FontWeight.w300)),
-                    Gap(size: 40),
-                    InputOutlined(
-                      keyboardType: TextInputType.emailAddress,
-                      controller: _emailController,
-                      labelText: 'Email',
-                      prefixIcon: Icons.email_outlined,
-                    ),
-                    Gap(size: 20),
-                    InputOutlined(
-                      keyboardType: TextInputType.visiblePassword,
-                      controller: _passwordController,
-                      labelText: 'Password',
-                      prefixIcon: Icons.lock_outline,
-                      obscureText: _obscureText,
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                            _obscureText
-                                ? Icons.visibility_off
-                                : Icons.visibility,
-                            color: Colors.blueGrey.shade400),
-                        onPressed: () {
-                          setState(() {
-                            _obscureText = !_obscureText;
-                          });
-                        },
-                      ),
-                    ),
-                    Gap(size: 8),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: buttons.TextButton(
-                          text: "Forgot Password?",
-                          onPress: () {
-                            Navigator.push(
-                                context,
-                                CupertinoPageRoute(
-                                  builder: (context) => const ForgetPassword(),
-                                ));
-                          }),
-                    ),
-                    Gap(size: 20),
-                    buttons.FillButton(
-                        text: "Login",
-                        onPress: () {
-                          Navigator.pushNamed(context, '/navigation');
-                        }),
-                    Gap(size: 20),
-                    // or login with text with devider
-                    MyDevider(text: "Or Continue With"),
-                    Gap(size: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: Container(
-                            padding: const EdgeInsets.all(16),
-                            decoration: BoxDecoration(
-                              color: Colors.blueGrey.shade50,
-                              border:
-                                  Border.all(color: Colors.blueGrey.shade300),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const Image(
-                                    image: AssetImage(
-                                        'assets/images/facebook.png'),
-                                    width: 20,
-                                  ),
-                                  Gap(size: 16),
-                                  const Text(
-                                    'Facebook',
-                                    style: TextStyle(color: Colors.blueGrey),
-                                  ),
-                                ]),
+                child: Form(
+                  key: formKey,
+                  child: Column(
+                    children: [
+                      // error message
+                      if (!isErrEmailOrPassword)
+                        const SizedBox(height: 40)
+                      else if (isErrEmailOrPassword)
+                        Container(
+                          height: 40,
+                          width: double.infinity,
+                          padding: const EdgeInsets.only(left: 16, right: 16),
+                          decoration: BoxDecoration(
+                              color: Colors.red.shade50,
+                              border: Border.all(width: 2, color: Colors.red),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(10))),
+                          child: Row(
+                            children: [
+                              const Icon(Icons.info_outline,
+                                  color: Colors.red, size: 20),
+                              Gap(size: 8),
+                              const Text(
+                                "Email or password is incorrect",
+                                style: TextStyle(
+                                    color: Colors.red,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ],
                           ),
                         ),
-                        Gap(size: 20),
-                        Expanded(
-                          child: GestureDetector(
-                            onTap: () {
-                              _signInWithGoogle();
-                            },
+                      Text("Sign In",
+                          style: TextStyle(
+                              fontSize: 30,
+                              color: Colors.blueGrey.shade700,
+                              fontWeight: FontWeight.bold)),
+                      Text("Enter valid email and password to continue",
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.blueGrey.shade500,
+                              fontWeight: FontWeight.w300)),
+                      Gap(size: 40),
+
+                      InputOutlined(
+                        validator: checkValidateToEmail,
+                        keyboardType: TextInputType.emailAddress,
+                        controller: _emailController,
+                        labelText: 'Email',
+                        prefixIcon: Icons.email_outlined,
+                      ),
+                      Gap(size: 20),
+                      InputOutlined(
+                        validator: checkValidateToPassword,
+                        keyboardType: TextInputType.visiblePassword,
+                        controller: _passwordController,
+                        labelText: 'Password',
+                        prefixIcon: Icons.lock_outline,
+                        obscureText: _obscureText,
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                              _obscureText
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                              color: Colors.blueGrey.shade400),
+                          onPressed: () {
+                            setState(() {
+                              _obscureText = !_obscureText;
+                            });
+                          },
+                        ),
+                      ),
+                      Gap(size: 8),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: buttons.TextButton(
+                            text: "Forgot Password?",
+                            onPress: () {
+                              Navigator.push(
+                                  context,
+                                  CupertinoPageRoute(
+                                    builder: (context) =>
+                                        const ForgetPassword(),
+                                  ));
+                            }),
+                      ),
+                      Gap(size: 20),
+                      buttons.FillButton(
+                        text: "Login",
+                        onPress: login,
+                      ),
+                      Gap(size: 20),
+                      // or login with text with devider
+                      MyDevider(text: "Or Continue With"),
+                      Gap(size: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
                             child: Container(
                               padding: const EdgeInsets.all(16),
                               decoration: BoxDecoration(
@@ -159,21 +219,53 @@ class _LoginPageState extends State<LoginPage> {
                                   children: [
                                     const Image(
                                       image: AssetImage(
-                                          'assets/images/google.png'),
+                                          'assets/images/facebook.png'),
                                       width: 20,
                                     ),
                                     Gap(size: 16),
                                     const Text(
-                                      'Google',
+                                      'Facebook',
                                       style: TextStyle(color: Colors.blueGrey),
                                     ),
                                   ]),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                          Gap(size: 20),
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: () {
+                                _signInWithGoogle();
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.all(16),
+                                decoration: BoxDecoration(
+                                  color: Colors.blueGrey.shade50,
+                                  border: Border.all(
+                                      color: Colors.blueGrey.shade300),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      const Image(
+                                        image: AssetImage(
+                                            'assets/images/google.png'),
+                                        width: 20,
+                                      ),
+                                      Gap(size: 16),
+                                      const Text(
+                                        'Google',
+                                        style:
+                                            TextStyle(color: Colors.blueGrey),
+                                      ),
+                                    ]),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
