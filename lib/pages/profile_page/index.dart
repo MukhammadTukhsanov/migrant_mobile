@@ -22,7 +22,7 @@ class _ProfilePageState extends State<ProfilePage> {
             userName: context.watch<UserRegProvider>().firstName,
             userSurname: context.watch<UserRegProvider>().lastName,
             isVerified: true,
-            isPassanger: context.watch<UserRegProvider>().isPassanger,
+            isPassanger: true,
             userImage: "https://mighty.tools/mockmind-api/content/human/6.jpg",
             userPhone: context.watch<UserRegProvider>().phoneNumber,
             userEmail: context.watch<UserRegProvider>().email,

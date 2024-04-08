@@ -17,55 +17,23 @@ class UserRegProvider with ChangeNotifier {
   String get firstName => _firstName;
   String get lastName => _lastName;
   String get phoneNumber => _phoneNumber;
-  bool get isPassanger => _isPassanger;
+  // bool get isPassanger => _isPassanger;
 
-  void registerUser(
-      {required String email,
-      required String password,
-      required String confirmPassword,
-      required String firstName,
-      required String lastName,
-      required String phoneNumber,
-      required bool isPassanger}) {
+  void registerUser({
+    required String email,
+    // required String password,
+    // required String confirmPassword,
+    required String firstName,
+    required String lastName,
+    required String phoneNumber,
+    // required bool isPassanger
+  }) {
     _email = email;
-    _password = password;
-    _confirmPassword = confirmPassword;
+    // _password = password;
+    // _confirmPassword = confirmPassword;
     _firstName = firstName;
     _lastName = lastName;
     _phoneNumber = phoneNumber;
-    _isPassanger = isPassanger;
-  }
-
-  void login(
-      {required String email,
-      required String password,
-      required bool isPassanger}) {
-    _email = email;
-    _password = password;
-    _isPassanger = isPassanger;
-    _firstName = 'Alisher';
-    _lastName = 'Sagindykov';
-    _phoneNumber = '+996 555 555 555';
-    isPassanger = true;
-  }
-
-  void skipLogin() {
-    _firstName = '';
-    _lastName = '';
-    _phoneNumber = '';
-    _isPassanger = true;
-    isLogged = false;
-  }
-
-  void reset() {
-    _email = '';
-    _password = '';
-    _confirmPassword = '';
-    _firstName = '';
-    _lastName = '';
-    _phoneNumber = '';
-    _isPassanger = false;
-
-    notifyListeners();
+    // _isPassanger = isPassanger;
   }
 }

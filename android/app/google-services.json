@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "311037823370",
-    "project_id": "m365-92149",
-    "storage_bucket": "m365-92149.appspot.com"
+    "project_number": "126453755347",
+    "project_id": "long-equinox-419408",
+    "storage_bucket": "long-equinox-419408.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:311037823370:android:8500dc83d582abd306e073",
+        "mobilesdk_app_id": "1:126453755347:android:72a0e959e3074fb499d326",
         "android_client_info": {
           "package_name": "com.example.migrant"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAdTWvhfBSDSfCR0JPZErzPJYLsDOgjQU0"
+          "current_key": "AIzaSyAH3x6aZdgco0YQwuCj6iZyjvAiNfP7Yak"
         }
       ],
       "services": {

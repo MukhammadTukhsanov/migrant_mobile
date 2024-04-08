@@ -44,37 +44,38 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyA4D2f5708b7HOegG0aGHITvRO-kZ5lYaw',
-    appId: '1:311037823370:web:1362c699c2b034ce06e073',
-    messagingSenderId: '311037823370',
-    projectId: 'm365-92149',
-    authDomain: 'm365-92149.firebaseapp.com',
-    storageBucket: 'm365-92149.appspot.com',
+    apiKey: 'AIzaSyB39A2ACnwu54hlVhepSBmYJk53TGmtURE',
+    appId: '1:126453755347:web:771000daca97d6b999d326',
+    messagingSenderId: '126453755347',
+    projectId: 'long-equinox-419408',
+    authDomain: 'long-equinox-419408.firebaseapp.com',
+    storageBucket: 'long-equinox-419408.appspot.com',
+    measurementId: 'G-0W0WCJS504',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAdTWvhfBSDSfCR0JPZErzPJYLsDOgjQU0',
-    appId: '1:311037823370:android:8500dc83d582abd306e073',
-    messagingSenderId: '311037823370',
-    projectId: 'm365-92149',
-    storageBucket: 'm365-92149.appspot.com',
+    apiKey: 'AIzaSyAH3x6aZdgco0YQwuCj6iZyjvAiNfP7Yak',
+    appId: '1:126453755347:android:72a0e959e3074fb499d326',
+    messagingSenderId: '126453755347',
+    projectId: 'long-equinox-419408',
+    storageBucket: 'long-equinox-419408.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyD1q6zjbwAq8VQG2_jecYBS8vueyvWi8Pw',
-    appId: '1:311037823370:ios:e1c421e84ddfefcb06e073',
-    messagingSenderId: '311037823370',
-    projectId: 'm365-92149',
-    storageBucket: 'm365-92149.appspot.com',
+    apiKey: 'AIzaSyDOIH44yg2Oiy4eOby57y-zh_PEE8ZqH-M',
+    appId: '1:126453755347:ios:16a47ea880b88f0399d326',
+    messagingSenderId: '126453755347',
+    projectId: 'long-equinox-419408',
+    storageBucket: 'long-equinox-419408.appspot.com',
     iosBundleId: 'com.example.migrant',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyD1q6zjbwAq8VQG2_jecYBS8vueyvWi8Pw',
-    appId: '1:311037823370:ios:58d556e0f0c8bb0806e073',
-    messagingSenderId: '311037823370',
-    projectId: 'm365-92149',
-    storageBucket: 'm365-92149.appspot.com',
+    apiKey: 'AIzaSyDOIH44yg2Oiy4eOby57y-zh_PEE8ZqH-M',
+    appId: '1:126453755347:ios:d590a9ac1ecc48ce99d326',
+    messagingSenderId: '126453755347',
+    projectId: 'long-equinox-419408',
+    storageBucket: 'long-equinox-419408.appspot.com',
     iosBundleId: 'com.example.migrant.RunnerTests',
   );
 }

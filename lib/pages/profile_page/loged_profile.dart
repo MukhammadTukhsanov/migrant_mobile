@@ -2,8 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hive/hive.dart';
 import 'package:migrant/components/alert.dart';
 import 'package:migrant/components/gap.dart';
+import 'package:migrant/pages/login_/index.dart';
 import 'package:migrant/pages/profile_page/advertisement/add_advertisement.dart';
 import 'package:migrant/pages/profile_page/advertisement/my_advertisement.dart';
 import 'package:migrant/pages/choose_country/verify_profile/index.dart';
@@ -41,8 +43,10 @@ class LogedProfile extends StatefulWidget {
 }
 
 class _LogedProfileState extends State<LogedProfile> {
+  Box box = Hive.box('migrant');
   @override
   Widget build(BuildContext context) {
+    final user = box.get('user');
     return SafeArea(
         child: AnnotatedRegion(
             value: const SystemUiOverlayStyle(
@@ -131,7 +135,7 @@ class _LogedProfileState extends State<LogedProfile> {
                                                     MainAxisAlignment.center,
                                                 children: [
                                                   Text(
-                                                    '${widget.userName} ${widget.userSurname}',
+                                                    '${user["firstName"]} ${user["lastName"]}',
                                                     style: const TextStyle(
                                                       fontSize: 20,
                                                       fontWeight:
@@ -265,7 +269,7 @@ class _LogedProfileState extends State<LogedProfile> {
                                 ),
                               ),
                               subtitle: Text(
-                                widget.userPhone,
+                                user["phoneNumber"],
                                 style: const TextStyle(
                                   color: Colors.blueGrey,
                                 ),
@@ -320,7 +324,7 @@ class _LogedProfileState extends State<LogedProfile> {
                                   color: Colors.blueGrey,
                                 ),
                               ),
-                              subtitle: Text(widget.userEmail,
+                              subtitle: Text(user["email"],
                                   style: const TextStyle(
                                     color: Colors.blueGrey,
                                   )),
@@ -513,10 +517,36 @@ class _LogedProfileState extends State<LogedProfile> {
                                             'Are you sure you want to logout?',
                                         accept: 'Logout',
                                         acceptFunction: () {
-                                          Navigator.pushNamed(
-                                              context, '/login');
+                                          box.delete('user');
+                                          FirebaseAuth.instance.signOut();
+                                          Navigator.pushAndRemoveUntil(
+                                              context,
+                                              PageRouteBuilder(pageBuilder:
+                                                  (BuildContext context,
+                                                      Animation animation,
+                                                      Animation
+                                                          secondaryAnimation) {
+                                                return const LoginPage();
+                                              }, transitionsBuilder:
+                                                  (BuildContext context,
+                                                      Animation<double>
+                                                          animation,
+                                                      Animation<double>
+                                                          secondaryAnimation,
+                                                      Widget child) {
+                                                return SlideTransition(
+                                                  position: Tween<Offset>(
+                                                    begin:
+                                                        const Offset(1.0, 0.0),
+                                                    end: Offset.zero,
+                                                  ).animate(animation),
+                                                  child: child,
+                                                );
+                                              }),
+                                              (Route route) => false);
+                                          // Navigator.pushNamed(
+                                          //     context, '/login');
                                         }));
-                                FirebaseAuth.instance.signOut();
                               },
                               leading: const Icon(
                                 Icons.logout,

@@ -1,15 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:migrant/auth/firebase_auth_implementation/firebase_auth_services.dart';
 import 'package:migrant/pages/forget_password_/index.dart';
 import 'package:migrant/pages/registration_/index.dart';
 import 'package:migrant/components/buttons.dart' as buttons;
 import 'package:migrant/components/devider.dart';
 import 'package:migrant/components/gap.dart';
 import 'package:migrant/components/input_outlined.dart';
-import 'package:migrant/providers/user_reg_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:migrant/pages/welcom/index.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -19,7 +20,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
   //controller for email input
   final _emailController = TextEditingController(
     text: 'passanger@mail.com',
@@ -74,21 +74,6 @@ class _LoginPageState extends State<LoginPage> {
         return 'Password must be at least 6 characters long';
       }
       return null; // Return null if the input is valid
-    }
-
-    login() {
-      if (formKey.currentState!.validate()) {
-        if (_emailController.text == "passanger@mail.com" &&
-            _passwordController.text == "123456") {
-          context.read<UserRegProvider>().login(
-              email: _emailController.text,
-              password: _passwordController.text,
-              isPassanger: true);
-          Navigator.pushNamed(context, '/navigation');
-        } else {
-          errEmailOrPassword();
-        }
-      }
     }
 
     return Scaffold(
@@ -196,7 +181,7 @@ class _LoginPageState extends State<LoginPage> {
                       Gap(size: 20),
                       buttons.FillButton(
                         text: "Login",
-                        onPress: login,
+                        onPress: _signIn,
                       ),
                       Gap(size: 20),
                       // or login with text with devider
@@ -307,19 +292,40 @@ class _LoginPageState extends State<LoginPage> {
         final GoogleSignInAuthentication googleSignInAuthentication =
             await googleSignInAccount.authentication;
 
-        final AuthCredential credential = GoogleAuthProvider.credential(
+        GoogleAuthProvider.credential(
           accessToken: googleSignInAuthentication.accessToken,
           idToken: googleSignInAuthentication.idToken,
         );
 
-        await _auth.signInWithCredential(credential);
+        // await _auth.signInWithCredential(credential);
 
         // ignore: use_build_context_synchronously
         Navigator.pushNamed(context, '/navigation');
       }
     } catch (e) {
+      errEmailOrPassword();
       // ignore: avoid_print
-      print(e);
+      print("error: $e");
+    }
+  }
+
+  void _signIn() async {
+    if (kDebugMode) {
+      print(
+          "email: ${_emailController.text} password: ${_passwordController.text}");
+    }
+    User? user = await FirebaseAuthServices.signInUsingEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+        context: context);
+    if (user != null) {
+      // ignore: use_build_context_synchronously
+      FirebaseAuthServices.getUserData(uid: user.uid, context: context);
+      // ignore: use_build_context_synchronously
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const WelcomePage()));
+    } else {
+      errEmailOrPassword();
     }
   }
 }

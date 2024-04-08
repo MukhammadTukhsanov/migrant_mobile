@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyD1q6zjbwAq8VQG2_jecYBS8vueyvWi8Pw</string>
+	<string>AIzaSyDOIH44yg2Oiy4eOby57y-zh_PEE8ZqH-M</string>
 	<key>GCM_SENDER_ID</key>
-	<string>311037823370</string>
+	<string>126453755347</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.example.migrant.RunnerTests</string>
 	<key>PROJECT_ID</key>
-	<string>m365-92149</string>
+	<string>long-equinox-419408</string>
 	<key>STORAGE_BUCKET</key>
-	<string>m365-92149.appspot.com</string>
+	<string>long-equinox-419408.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:311037823370:ios:58d556e0f0c8bb0806e073</string>
+	<string>1:126453755347:ios:d590a9ac1ecc48ce99d326</string>
 </dict>
 </plist>

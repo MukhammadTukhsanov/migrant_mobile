@@ -1,15 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:migrant/auth/firebase_implementation/firebase_uth_services.dart';
+import 'package:migrant/auth/firebase_auth_implementation/firebase_auth_services.dart';
 import 'package:migrant/components/buttons.dart' as button;
 import 'package:migrant/components/gap.dart';
 import 'package:migrant/components/input_outlined.dart';
+import 'package:migrant/navbar/index.dart';
 import 'package:migrant/pages/login_/index.dart';
 import 'package:migrant/auth/auth_components/header.dart';
-import 'package:migrant/providers/user_reg_provider.dart';
-import 'package:provider/provider.dart';
 
 class RegistrationPage extends StatefulWidget {
   const RegistrationPage({super.key});
@@ -20,7 +20,6 @@ class RegistrationPage extends StatefulWidget {
 
 class _RegistrationPageState extends State<RegistrationPage> {
   // firebase authentication service
-  final FirebaseAuthService _auth = FirebaseAuthService();
 
   // text controllers
   final _firstnameController = TextEditingController();
@@ -392,17 +391,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               }
                               if (_formKey.currentState!.validate() &&
                                   !unchecked) {
-                                context.read<UserRegProvider>().registerUser(
-                                      email: _emailController.text,
-                                      password: _passwordController.text,
-                                      isPassanger: _isPassenger,
-                                      confirmPassword:
-                                          _confirmPasswordController.text,
-                                      firstName: _firstnameController.text,
-                                      lastName: _lastnameController.text,
-                                      phoneNumber: _phoneNumberController.text,
-                                    );
-                                Navigator.pushNamed(context, '/navigation');
+                                _createAccount();
                               }
                             },
                           ),
@@ -448,54 +437,19 @@ class _RegistrationPageState extends State<RegistrationPage> {
         ));
   }
 
-  // ignore: unused_element
-  void _signUp() async {
-    String email = _emailController.text;
-    String password = _passwordController.text;
-
-    // ignore: avoid_print
-    print("Email: $email");
-    // ignore: avoid_print
-    print("Password: $password");
-    User? user = await _auth.signUpWithEmailAndPassword(email, password);
-
-    if (user != null) {
-      await addUser(
-        _firstnameController.text.trim(),
-        _lastnameController.text.trim(),
-        _emailController.text.trim(),
-        _passwordController.text.trim(),
-      );
-      // ignore: avoid_print
-      print("user ${_auth.getCurrentUser()}");
-
-      // ignore: avoid_print
-      print("User is successfully created");
-      // ignore: use_build_context_synchronously
-      Navigator.pushNamed(context, '/navigation');
-    } else {
-      // ignore: use_build_context_synchronously
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Error creating user'),
-        ),
-      );
+  void _createAccount() async {
+    User? user = await FirebaseAuthServices.createNewUserAccount(
+        firstName: _firstnameController.text.trim(),
+        lastName: _lastnameController.text.trim(),
+        email: _emailController.text.trim(),
+        phoneNumber: _phoneNumberController.text.trim(),
+        isDriver: bool.parse(_isDriver.toString()),
+        password: _passwordController.text.trim(),
+        navigator: Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => const Navigation())),
+        context: context);
+    if (kDebugMode) {
+      print("user: $user");
     }
-  }
-
-  Future<void> addUser(
-      String firstName, String lastName, String email, String password) {
-    // Call the user's CollectionReference to add a new user
-    return users
-        .add({
-          'first_name': firstName,
-          'last_name': lastName,
-          'email': email,
-          'password': password
-        })
-        // ignore: avoid_print
-        .then((value) => print("value ${value.id}"))
-        // ignore: avoid_print
-        .catchError((error) => print("Failed to add user: $error"));
   }
 }
